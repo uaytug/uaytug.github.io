@@ -82,6 +82,12 @@ a {
     -webkit-text-stroke: medium;
 }
 
+.opensea {
+    background-image: linear-gradient(90deg,#FFFFFF, #2081e2);
+    color: #000;
+    -webkit-text-stroke: medium;
+}
+
 h2 {
     font-size: 31px;
     text-transform: uppercase;
