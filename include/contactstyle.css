@@ -129,6 +129,20 @@ a.projects {
   justify-content: center;
 }
 
+a.cv {
+  background-image: linear-gradient(#006060, #000000);
+  color: #fff;
+  box-sizing: content-box;
+  padding: 10px 20px;
+  border-radius: 10px;
+  border: 2px solid #000;
+  transition: 0.5s;
+  align-self: start;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+
 a:hover {
     box-shadow: 0 4px 4px rgba(0, 0, 0, 0.1);
     transform: translateY(-2px);
