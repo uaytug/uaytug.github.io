@@ -1,6 +1,6 @@
 # Fumea | Umut Aytuğ Semerci
 
-This is a personal website created by Umut Aytuğ Semerci, a computer engineering student with a passion for database and optimization.
+This is a personal website created by Umut Aytuğ Semerci (Me), a computer engineering student with a passion for database and optimization.
 
 ## Table of Contents
 
@@ -11,23 +11,23 @@ This is a personal website created by Umut Aytuğ Semerci, a computer engineerin
 
 ## About Me
 
-In the [About Me](https://uaytug.github.io/links/include/about.html) section, you can learn more about Umut Aytuğ Semerci. He is a 20-year-old student currently living in Istanbul, Turkey, and he is studying computer engineering. He has intermediate proficiency in the languages JavaScript, C, C++, HTML, and CSS, and he is working to advance his knowledge of database and optimization. In his free time, he is learning game modding and defensive cyber security.
+In the [About Me](https://uaytug.github.io/links/include/about.html) section, you can learn more about Me. 
 
 ## Projects
 
-In the [Projects](https://uaytug.github.io/links/include/projects.html) section, you can find information about Umut Aytuğ Semerci's personal projects. Some of these projects include:
+In the [Projects](https://uaytug.github.io/links/include/projects.html) section, you can find information about My personal projects. Some of these projects include:
 
-- [Project 1](https://uaytug.github.io/links/include/project1.html)
-- [Project 2](https://uaytug.github.io/links/include/project2.html)
-- [Project 3](https://uaytug.github.io/links/include/project3.html)
+- [Project 1](https://github.com/uaytug/I2DLE)
+- [Project 2](https://github.com/uaytug/DcBell-beta-public)
+- [Project 3](https://github.com/uaytug/Voting-System)
 
 ## Contact
 
-In the [Contact](https://uaytug.github.io/links/include/contact.html) section, you can find ways to contact Umut Aytuğ Semerci. You can reach him via email, LinkedIn, or GitHub.
+In the [Contact](https://uaytug.github.io/links/include/contact.html) section, you can find ways to contact Me. You can reach me via Social media, LinkedIn, or GitHub.
 
 ## Resume
 
-In the [Resume](https://uaytug.github.io/links/include/resume.html) section, you can find Umut Aytuğ Semerci's resume.
+In the [Resume](https://uaytug.github.io/links/include/resume.html) section, you can find My resume.
 
 ## Contributing
 
