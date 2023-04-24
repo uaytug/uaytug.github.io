@@ -1,6 +1,6 @@
 # Fumea | Umut Aytuğ Semerci
 
-This is a personal website created by Umut Aytuğ Semerci (Me), a computer engineering student with a passion for database and optimization.
+This is a personal website created by Umut Aytuğ Semerci (Me).
 
 ## Table of Contents
 
