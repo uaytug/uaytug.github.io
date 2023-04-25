@@ -4,10 +4,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Fumea | Aytuğ Semerci</title>
-  <link rel="icon" href="./images/res.svg" type="image/x-icon">
+  <link rel="icon" href="./images/abm.svg" type="image/x-icon">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Bruno Ace|Bungee">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <link rel="stylesheet" href="./styles/rs.css">
+  <link rel="stylesheet" href="./styles/ams.css">
   
   <!-- Dark mode styles -->
   <style>
@@ -79,7 +79,7 @@
           <li class="nav-item">
             <a class="nav-link" href="./index.html">Home</a>
           </li>
-          <li class="nav-item">
+          <li class="nav-item active">
             <a class="nav-link" href="./aboutme.html">About Me</a>
           </li>
           <li class="nav-item">
@@ -88,7 +88,7 @@
           <li class="nav-item">
             <a class="nav-link" href="./projects.html">My Projects</a>
           </li>
-          <li class="nav-item active">
+          <li class="nav-item">
             <a class="nav-link" href="./resume.html">My Resume</a>
           </li>
         </ul>
@@ -104,8 +104,17 @@
     </nav>
   
     <div class="main-content">
-        <object data="./misc/Resume.pdf" type="application/pdf" width="100%" height="1000px">
-            <p> What do you call a browser that can't open PDF files? A PDFail. 😂 <a href="./misc/Resume.pdf"> Here is the PDF file. :D </a></p> 
+        <img src="./images/pp.jpg" alt="Myself">
+      <div class="badge-base LI-profile-badge" data-locale="tr_TR" data-size="large" data-theme="dark" data-type="VERTICAL" data-vanity="uaytug" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://tr.linkedin.com/in/uaytug?trk=profile-badge">Umut Aytuğ Semerci</a></div>
+              
+      <p class="main-content">Greetings! My name is Umut Aytuğ Semerci, and I am a passionate and driven 20-year-old computer engineering student currently residing in Istanbul, Türkiye. As a second-year student, I am already well-versed in several programming languages, including JavaScript, C, C++, HTML, and CSS, and I am always eager to expand my knowledge and skillset.
+
+        In addition to my academic pursuits, I am also an avid learner and enthusiast of game modding and defensive cyber security. Currently, I am working on developing a secure ad-blocker for Chromium-based browsers, and I am also in the process of building the second version of my website. I enjoy taking on challenges and pushing myself to be the best that I can be, both personally and professionally.
+        
+        Furthermore, I am constantly seeking to expand my knowledge and expertise in the fields of offensive cyber security and OSINT. And, to add a bit of humor, I am also on a mission to learn how to quit Vim! Fun fact about me: I used to produce EDM music and play water polo.
+        
+        I am always excited to connect with others and exchange knowledge and ideas, so please don't hesitate to reach out to me with any questions or inquiries. Thank you for taking the time to learn a bit more about me.</p>
+      <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
     </div>
   
     <footer>
@@ -166,6 +175,35 @@
   }
 
   toggleSwitch.addEventListener('change', switchTheme, false);
+
+  const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+let interval = null;
+
+document.querySelector("h1").onmouseover = (event) => {
+  let iteration = 0;
+
+  clearInterval(interval);
+
+  interval = setInterval(() => {
+    event.target.innerText = event.target.innerText
+      .split("")
+      .map((letter, index) => {
+        if (index < iteration) {
+          return event.target.dataset.value[index];
+        }
+
+        return letters[Math.floor(Math.random() * 26)];
+      })
+      .join("");
+
+    if (iteration >= event.target.dataset.value.length) {
+      clearInterval(interval);
+    }
+
+    iteration += 1 / 3;
+     }, 30);
+    };
 
     </script>
     </body>

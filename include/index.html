@@ -1,64 +1,171 @@
-<html>
-  <head>
-    <title>Fumea | Aytuğ Semerci</title> 
-    <link rel = "icon" href =  "./images/Logo.png" type = "image/x-icon">
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Monoton|Bungee">
-    <link rel="stylesheet" href="./styles/mainstyle.css" />
-  </head>
-  <body>
-    <header>
-      <h2>Welcome</h2>
-    </header>
-    <nav>
-      <ul>
-        <li><a class="index"  href="./index.html">Home</a></li>
-        <li><a class="about" href="./about.html">About Me</a></li>
-        <li><a class="contact"  href="./contact.html">Contact</a></li>
-        <li><a class="projects"  href="./projects.html">Projects</a></li>
-        <li><a class="cv" href="./resume.html">Resume</a></li>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fumea | Aytuğ Semerci</title>
+  <link rel="icon" href="./images/home.svg" type="image/x-icon">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Bruno Ace|Bungee">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="./styles/is.css">
+  
+  <!-- Dark mode styles -->
+  <style>
+    :root {
+      --primary-color: #178C81;
+      --secondary-color: #1FC1B1;
+      --tertiary-color: #062320;
+      --accent-color: #0E5850;
+      --dark-color: #ffffff;
+    }
+    
+    [data-theme='dark'] {
+      --primary-color: #0E5850;
+      --secondary-color: #062320;
+      --tertiary-color: #178C81;
+      --accent-color: #1FC1B1;
+      --dark-color: #ffffff;
+      
+      background-color: #000000;
+      color: #ffffff;
+    }
+    
+    [data-theme='dark'] .navbar {
+      background-color: var(--primary-color);
+    }
+    
+    [data-theme='dark'] .navbar-light .navbar-toggler {
+      color: var(--dark-color);
+      border-color: var(--dark-color);
+    }
+    
+    [data-theme='dark'] .navbar-light .navbar-toggler-icon {
+      background-image: url('data:image/svg+xml;charset=UTF-8,%3csvg viewBox="0 0 30 30" xmlns="http://www.w3.org/2000/svg"%3e%3cpath stroke="rgba%28255%2C255%2C255%2C0.5%29" stroke-width="2" stroke-linecap="round" stroke-miterlimit="10" d="M4 7h22M4 15h22M4 23h22" fill="none" fill-rule="evenodd"/%3e%3c/svg%3e');
+    }
+    
+    [data-theme='dark'] .nav-link {
+      color: var(--dark-color);
+    }
+    
+    [data-theme='dark'] .main-content {
+      background-color: var(--tertiary-color);
+      color: var(--dark-color);
+    }
+    
+    [data-theme='dark'] footer {
+      background-color: var(--secondary-color);
+      color: var(--dark-color);
+    }
+        /* Dark mode toggle button styles */
+    [data-theme='dark'] .theme-switch__slider:before {
+    background-color: var(--dark-color);
+    }
+    [data-theme='dark'] .theme-switch__slider:after {
+    background-color: var(--secondary-color);
+    }
 
-      </ul>
+  </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="./index.html">Fumea</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" href="./index.html">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./aboutme.html">About Me</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./socialmedia.html">Contact Me</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./projects.html">My Projects</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="./resume.html">My Resume</a>
+          </li>
+        </ul>
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+              <label for="toggle" class="theme-switch">
+                <input type="checkbox" id="toggle" name="toggle" class="theme-switch__checkbox">
+                <div class="theme-switch__slider"></div>
+              </label>
+            </li>
+          </ul>          
+      </div>
     </nav>
-    <main>
-        <h1 data-value="Hello, World!" style="font-size:10vw">Hello, World!</h1>
-    </main>
+  
+    <div class="main-content">
+      <h1>Welcome to my website</h1>
+    </div>
+  
     <footer>
-        <h3>Made by Fumea | Umut Aytuğ Semerci</h3>
+      <h3>Made by Fumea | Umut Aytuğ Semerci</h3>
     </footer>
+  
+    <div class="hamburger" onclick="openNav()">
+      <div></div>
+      <div></div>
+      <div></div>
+    </div>
+  
+
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/js/bootstrap.min.js"></script>
+
+    <!-- Enable dark mode -->
+    <meta name="color-scheme" content="dark light">
+
+    <!-- Set color palette -->
+    <meta name="theme-color" content="#062320">
+    <meta name="msapplication-navbutton-color" content="#062320">
+    <meta name="apple-mobile-web-app-status-bar-style" content="#062320">
+
     <script>
-      const letters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+  /* JavaScript code for the hamburger menu */
+  function openNav() {
+    document.getElementById("myNav").style.width = "100%";
+  }
 
-      let interval = null;
+  function closeNav() {
+    document.getElementById("myNav").style.width = "0%";
+  }
 
-      document.querySelector("h1").onmouseover = (event) => {
-        let iteration = 0;
+  /* JavaScript code for dark mode toggle */
+  const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+  const currentTheme = localStorage.getItem('theme');
 
-        clearInterval(interval);
+  if (currentTheme) {
+    document.documentElement.setAttribute('data-theme', currentTheme);
 
-        interval = setInterval(() => {
-          event.target.innerText = event.target.innerText
-            .split("")
-            .map((letter, index) => {
-              if (index < iteration) {
-                return event.target.dataset.value[index];
-              }
+    if (currentTheme === 'dark') {
+      toggleSwitch.checked = true;
+    }
+  }
 
-              return letters[Math.floor(Math.random() * 26)];
-            })
-            .join("");
+  function switchTheme(e) {
+    if (e.target.checked) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.setAttribute('data-theme', 'light');
+      localStorage.setItem('theme', 'light');
+    }
+  }
 
-          if (iteration >= event.target.dataset.value.length) {
-            clearInterval(interval);
-          }
+  toggleSwitch.addEventListener('change', switchTheme, false);
 
-          iteration += 1 / 3;
-        }, 30);
-      };
     </script>
-  </body>
+    </body>
 </html>
-
-
-
