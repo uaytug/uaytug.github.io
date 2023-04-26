@@ -9,7 +9,7 @@
   }
   
   .navbar-brand {
-    font-family: 'Bungee', cursive;
+    font-family: 'Bruno Ace', cursive;
     font-size: 2rem;
     color: var(--dark-color);
     text-shadow: 1px 1px var(--secondary-color);
@@ -21,7 +21,7 @@
   
   .nav-link {
     color: var(--dark-color);
-    font-family: 'Bruno Ace', sans-serif;
+    font-family: 'Goldman', sans-serif;
     font-size: 1.2rem;
     text-transform: uppercase;
     margin-right: 1rem;
@@ -69,7 +69,7 @@
   }
   
   .main-content p {
-    font-family: 'Bruno Ace', cursive;
+    font-family: 'Goldman', cursive;
     font-size: 1.5rem;
   }
 
@@ -86,7 +86,7 @@
   }
   
   footer h3 {
-    font-family: 'Bungee', cursive;
+    font-family: 'Bruno Ace', cursive;
     font-size: 1.5rem;
     color: var(--dark-color);
     text-shadow: 1px 1px var(--secondary-color);

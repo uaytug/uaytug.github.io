@@ -9,7 +9,7 @@
   }
   
   .navbar-brand {
-    font-family: 'Bungee', cursive;
+    font-family: 'Bruno Ace', cursive;
     font-size: 2rem;
     color: var(--dark-color);
     text-shadow: 1px 1px var(--secondary-color);
@@ -21,7 +21,7 @@
   
   .nav-link {
     color: var(--dark-color);
-    font-family: 'Bruno Ace', sans-serif;
+    font-family: 'Goldman', sans-serif;
     font-size: 1.2rem;
     text-transform: uppercase;
     margin-right: 1rem;
@@ -57,6 +57,7 @@
   }
 
   .zattirizortzort{
+    font-family: 'Goldman', sans-serif;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -78,9 +79,9 @@
   
   .main-content {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    grid-template-rows: repeat(3, 1fr);
-    gap: 10px;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    gap: 3px;
   }
 
   .main-content a {
@@ -97,25 +98,26 @@
   .main-content a:hover {
     transform: scale(1.05);
   }
-
-  @media (max-width: 768px) {
-    .main-content {
-      grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(6, 1fr);
-    }
-  }
-
-  @media (max-width: 280px) {
-    .main-content {
+  @media (max-width: 540px) {
+    .main-content{
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: repeat(6, 1fr);
     }
     .main-content a{
-        padding: 0.5rem;
+      padding: 0.1rem;
     }
   }
-
-
+  @media (max-width: 768px) {
+    .main-content a{
+      padding: 0.5rem;
+    }
+  }
+  @media (max-width: 1000px) {
+    .main-content a{
+      padding: 0.9rem;
+      gap: 1px;
+    }
+  }
 
   /* Footer styles */
     footer {
@@ -130,7 +132,7 @@
   }
   
   footer h3 {
-    font-family: 'Bungee', cursive;
+    font-family: 'Bruno Ace', cursive;
     font-size: 1.5rem;
     color: var(--dark-color);
     text-shadow: 1px 1px var(--secondary-color);
@@ -204,12 +206,10 @@
     display: block; /* set to block if the last element is inline-level */
   }
   
-
-
-.main-content a.insta {
+  .main-content a.insta {
     background-image: radial-gradient(circle at 33% 100%, #fed373 4%, #f15245 30%, #d92e7f 62%, #9b36b7 85%, #515ecf);
     color: #000;
-}   
+}
 
 .main-content a.twitter {
     background-color: #1D9BF0;
