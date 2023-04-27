@@ -1,0 +1,128 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+    font-family: "Audiowide", sans-serif;
+    margin: 0;
+    padding: 0;
+  }
+  
+  header {
+    background-color: #006060;
+    color: white;
+    padding: 20px;
+    text-align: center;
+  }
+
+  main {
+    background-color: #000000;
+    background-image: linear-gradient( #006060 0%, #000000 50%);
+    color: #ffffff;
+    min-height: 90vh;
+    text-align: center;
+    font-size: 20px;
+    font-family: "Audiowide", sans-serif;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    column-count: auto;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    padding: 40px;
+}
+
+  nav {
+  background-color: #000000;
+  background-image: -webkit-gradient(linear,left top,left bottom,color stop(20%,#006060),color stop(88%,#000000));
+  background-image: linear-gradient( #006060 20%, #000000 88%);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: auto;
+  font-size: 20px;
+  font-family: 'Bungee', cursive;
+}
+
+  
+  main {
+    padding: 20px;
+    background-color: #000000;
+    color: #ffffff;
+  }
+  
+  footer {
+    background-color: black;
+    padding: 20px;
+    text-align: center;
+    color: white;
+    
+  }
+
+h1 {
+    font-family: 'Bungee', cursive;
+    margin: 0;
+    font-size: 150px;
+    color: #fff;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+.selection-point {
+  text-align: center;
+  margin: 50px auto;
+}
+
+.selection-point h2 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.btn-mobile, .btn-normal {
+  display: inline-block;
+  padding: 0;
+  text-decoration: none;
+  color: #fff;
+  border-radius: 5px;
+  margin: 0 10px 10px 10px;
+  transition: all 0.3s ease-in-out;
+  max-width: 200px;
+}
+
+.btn-mobile img, .btn-normal img {
+  display: block;
+  width: 100%;
+  border-radius: 5px 5px 0 0;
+}
+
+.btn-mobile {
+  background-color: #000;
+}
+
+.btn-normal {
+  background-color: #1FC1B1;
+}
+
+.btn-mobile:hover, .btn-normal:hover {
+  opacity: 0.8;
+}
+
+@media screen and (min-width: 768px) {
+  .btn-mobile, .btn-normal {
+    max-width: none;
+    width: 300px;
+  }
+}
+
