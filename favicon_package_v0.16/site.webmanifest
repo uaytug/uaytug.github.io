@@ -1,0 +1,22 @@
+{
+    "name": "Umut Aytuğ Semerci",
+    "short_name": "Portfolio",
+    "description": "A portfolio website for Umut Aytuğ Semerci, Computer Engineering Student and Cyber Security Enthusiast.",
+    "start_url": "./index.html",
+    "display": "standalone",
+    "background_color": "#000000",
+    "theme_color": "#19c113",
+    "icons": [
+      {
+        "src": "./favicon_package_v0.16/android-chrome-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+      },
+      {
+        "src": "./favicon_package_v0.16/android-chrome-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+      }
+    ]
+  }
+  
