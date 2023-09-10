@@ -1,6 +1,6 @@
 # Fumea | Umut Aytuğ Semerci
 
-This is a (personal website)[https://www.uaytug.dev/] created by Umut Aytuğ Semerci (Me).
+This is a [personal website](https://www.uaytug.dev/) created by Umut Aytuğ Semerci (Me).
 
 ## Table of Contents
 
