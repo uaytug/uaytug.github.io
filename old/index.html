@@ -1,38 +1,44 @@
 <!DOCTYPE html>
-  <head>
+<html lang="en">
+<head>
     <title>Fumea | Aytuğ Semerci</title> 
-    <link rel = "icon" href =  "./include/logo.png" type = "image/x-icon">
+    <link rel="icon" href="./include/logo.png" type="image/x-icon">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide|Monoton|Bungee">
     <link rel="stylesheet" href="./include/mainstyle.css" />
-    
-  </head>
-  <body>
+    <script>
+        // JavaScript to detect the device and redirect accordingly
+        var isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+        if (isMobile) {
+            window.location.href = './mobile/index.html'; // Redirect to mobile version
+        } else {
+            window.location.href = './web/index.html'; // Redirect to PC version
+        }
+    </script>
+</head>
+<body>
     <header>
-      <h2>Welcome</h2>
+        <h2>Welcome</h2>
     </header>
     <main>
-      <div class="selection-point">
-        <h2>Please select your preferred version:</h2>
-        <div class="buttons">
-          <a href="./mobile/index.html" class="btn-mobile">
-            <img src="./include/mobile.jpeg" alt="Mobile Website Preview">
-            For Mobile Users
-          </a>
-          <a href="./web/index.html" class="btn-normal">
-            <img src="./include/web.jpeg" alt="Normal Website Preview">
-            For PC Users
-          </a>
+        <div class="selection-point">
+            <h2>Please select your preferred version:</h2>
+            <div class="buttons">
+                <!-- These links will not be shown as the page will redirect immediately -->
+                <a href="./mobile/index.html" class="btn-mobile">
+                    <img src="./include/mobile.jpeg" alt="Mobile Website Preview">
+                    For Mobile Users
+                </a>
+                <a href="./web/index.html" class="btn-normal">
+                    <img src="./include/web.jpeg" alt="Normal Website Preview">
+                    For PC Users
+                </a>
+            </div>
         </div>
-      </div>
-      
     </main>
     <footer>
         <h3>Made by Fumea | Umut Aytuğ Semerci</h3>
     </footer>
-  </body>
+</body>
 </html>
-
-
-

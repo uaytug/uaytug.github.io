@@ -59,6 +59,15 @@
             margin-top: 0;
             margin-bottom: 0;
         }
+            
+
+          footer {
+          background-color: #000;
+          color: #00ff00;
+          text-align: center;
+          padding: 20px;
+          font-size: 16px;
+          }
     </style>
 </head>
 <body>
@@ -67,14 +76,15 @@
         <header class="container" v-bind="sectionHeight">
           <v-row align="center">
             <v-col cols="12" md="6" data-aos="fade-up">
-              <h1 class="display-4 primary--text">{{name}}</h1>
+              <h1 class="display-4 primary--text">Hi, I am <span class="animName"></span></h1>
               <h2 class="primary--text">{{jobTitle}}</h2>
               <p>{{jobDescription}}</p>
               <nav>
                 <v-btn href="#skills" text="text" class="primary--text">/Skills</v-btn>
                 <v-btn href="#works" text="text" class="primary--text">/Recent Works</v-btn>
                 <v-btn href="#hobbies" text="text" class="primary--text">/Hobbies</v-btn>
-                <v-btn href="#contact" text="text" class="primary--text" outlined="outlined">/Contacts</v-btn>
+                <v-btn href="#contact" text="text" class="primary--text">/Contacts</v-btn>
+                <v-btn href="old/index.html" text="text" class="primary--text">/Old</v-btn>
               </nav>
             </v-col>
           </v-row>
@@ -141,7 +151,7 @@
             <v-col cols="12" sm="6" md="4" class="text-center">
               <v-row>
                 <v-col class="text-center" cols="12" data-aos="fade-up">
-                  <h3 v-if="contacts && contacts.email">{{contacts.email}}</h3>
+                  <h3 v-if="contacts && contacts.email"><a href="mailto:rktcvrq5@duck.com">{{contacts.email}}</a></h3>
                 </v-col>
                 <v-col class="text-center" cols="12" data-aos="fade-up">
                   <v-btn class="ma-1" v-for="(link, index) in contactLinks" outlined="outlined" rounded="rounded" target="_blank" :href="link.link" :key="index" color="primary">
@@ -154,11 +164,26 @@
         </main>
       </v-app>
     </div>
-
+    <footer>
+      <p>&copy; 2023 Umut Aytuğ Semerci</p>
+        <p>Computer Engineering Student</p>
+        <p>Website Version 2.0 | Developed with 👨‍💻</p>
+    </footer>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
     <script src="script.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var typed = new Typed(".animName",{
+          strings: ["Umut", "Aytuğ", "Semerci", "Umut Alt", "Umut Aytup", "Umut Aytuğ", "Umut Aytuğ Semerci"],
+          typeSpeed: 100,
+          backSpeed: 60,
+          loop: false
+        })
+      });
+    </script>     
     <script>
       var vm = new Vue({
         el: '#app',
