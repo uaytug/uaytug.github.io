@@ -1,33 +1,31 @@
 # Fumea | Umut Aytuğ Semerci
 
-This is a personal website created by Umut Aytuğ Semerci (Me).
+This is a [personal website](https://www.uaytug.dev/) created by Umut Aytuğ Semerci (Me).
 
 ## Table of Contents
 
-- [About Me](#about-me)
-- [Projects](#projects)
+- [Skills](#skills)
+- [Works](#works)
+- [Hobbies](#hobbies)
 - [Contact](#contact)
-- [Resume](#resume)
+- [Contributing](#contributing)
+- [License](#license)
 
-## About Me
+## Skills
 
-In the [About Me](https://uaytug.github.io/links/include/about.html) section, you can learn more about Me.
+In the [Skills](https://www.uaytug.dev/#skills) section, you can learn more about my skills.
 
-## Projects
+## Works
 
-In the [Projects](https://uaytug.github.io/links/include/projects.html) section, you can find information about My personal projects. Some of these projects include:
+In the [Works](https://www.uaytug.dev/#works) section, you can find information about My personal projects. Some of these projects include:
 
-- [Project 1](https://github.com/uaytug/I2DLE)
-- [Project 2](https://github.com/uaytug/DcBell-beta-public)
-- [Project 3](https://github.com/uaytug/Voting-System)
+## Hobbies
+
+In the [Hobbies](https://www.uaytug.dev/#hobbies) section, you can find my hobbies.
 
 ## Contact
 
-In the [Contact](https://uaytug.github.io/links/include/contact.html) section, you can find ways to contact Me. You can reach me via Social media, LinkedIn, or GitHub.
-
-## Resume
-
-In the [Resume](https://uaytug.github.io/links/include/resume.html) section, you can find My resume.
+In the [Contact](https://www.uaytug.dev/#contact) section, you can find ways to contact Me. You can reach me via Social media, LinkedIn, or GitHub.
 
 ## Contributing
 
