@@ -8,12 +8,12 @@ window.PorfolioConfig = {
         { type: 'JavaScript', level: 75 },
         { type: 'Node.js', level: 75 },
         { type: 'Linux', level: 50 },
+        { type: 'Git', level: 50 },
         { type: 'C', level: 50 },
         { type: 'C++', level: 50 },
         { type: 'Python', level: 25 },
         { type: 'React', level: 25 },
-        { type: 'MongoDB', level: 25 },
-        { type: 'Git', level: 25 }
+        { type: 'MongoDB', level: 25 }
     ],
     works: [
         {
