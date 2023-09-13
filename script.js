@@ -49,6 +49,10 @@ window.PorfolioConfig = {
         {
             name: 'Music',
             description: 'I love listening to music and exploring different genres.'
+        },
+        {
+            name: 'Waterpolo',
+            description: 'I used to play waterpolo professionaly for 10 years and I still follow the turkish league.'
         }
     ],
     contacts: {

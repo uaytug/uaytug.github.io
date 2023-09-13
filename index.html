@@ -59,8 +59,6 @@
             margin-top: 0;
             margin-bottom: 0;
         }
-            
-
           footer {
           background-color: #000;
           color: #00ff00;
@@ -76,8 +74,9 @@
         <header class="container" v-bind="sectionHeight">
           <v-row align="center">
             <v-col cols="12" md="6" data-aos="fade-up">
-              <h1 class="display-4 primary--text">Hi, I am <span class="animName"></span></h1>
-              <h2 class="primary--text">{{jobTitle}}</h2>
+              <h1 class="display-4 primary--text">Hi I am</h1>
+              <h2 class="display-4 secondary--text"><span class="animName"></span></h2>
+              <h3 class="primary--text">{{jobTitle}}</h3>
               <p>{{jobDescription}}</p>
               <nav>
                 <v-btn href="#skills" text="text" class="primary--text">/Skills</v-btn>
@@ -92,7 +91,7 @@
         <main class="container">
             <section class="row mb-5" id="skills">
                 <v-col cols="12" md="6">
-                    <h1 class="primary--text" data-aos="fade-up">/Skills</h1>
+                    <h1 class="primary--text" data-aos="fade-up"><span class="skills"></span></h1>
                 </v-col>
                 <v-col v-for="(skill, index) in skills" cols="12" :key="index">
                     <v-card hover="hover" height="100%" data-aos="fade-up">
@@ -109,7 +108,7 @@
             </section>
           <section class="row mb-5" id="works">
             <v-col cols="12" md="6">
-              <h1 class="primary--text" data-aos="fade-up">/Recent Works</h1>
+              <h1 class="primary--text" data-aos="fade-up"><span class="works"></span></h1>
             </v-col>
             <v-col v-for="(work, index) in works" cols="12" :key="index">
               <v-card hover="hover" height="100%" data-aos="fade-up">
@@ -128,7 +127,7 @@
           </section>
           <section class="row mb-5" id="hobbies">
             <v-col cols="12" md="6">
-              <h1 class="primary--text" data-aos="fade-up">/My Hobbies</h1>
+              <h1 class="primary--text" data-aos="fade-up"><span class="hobbies"></span></h1>
             </v-col>
             <v-col v-for="(hobby, index) in hobbies" cols="12" :key="index">
               <v-card hover="hover" height="100%" data-aos="fade-up">
@@ -146,7 +145,7 @@
           </section>
           <section class="row justify-center" id="contact">
             <v-col cols="12" md="10" class="text-center">
-              <h1 class="primary--text" data-aos="fade-up">/Contact Me</h1>
+              <h1 class="primary--text" data-aos="fade-up"><span class="contact"></span></h1>
             </v-col>
             <v-col cols="12" sm="6" md="4" class="text-center">
               <v-row>
@@ -166,8 +165,6 @@
     </div>
     <footer>
       <p>&copy; 2023 Umut Aytuğ Semerci</p>
-        <p>Computer Engineering Student</p>
-        <p>Website Version 2.0 | Developed with 👨‍💻</p>
     </footer>
     <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
@@ -183,7 +180,47 @@
           loop: true
         })
       });
-    </script>     
+    </script>    
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var typed = new Typed(".skills",{
+          strings: ["/Skills"],
+          typeSpeed: 100,
+          backSpeed: 60,
+          loop: false
+        })
+      });
+    </script>
+     <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var typed = new Typed(".works",{
+          strings: ["/Recent Works"],
+          typeSpeed: 100,
+          backSpeed: 60,
+          loop: false
+        })
+      });
+    </script> 
+     <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var typed = new Typed(".hobbies",{
+          strings: ["/My Hobbies"],
+          typeSpeed: 100,
+          backSpeed: 60,
+          loop: false
+        })
+      });
+    </script>   
+     <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var typed = new Typed(".contact",{
+          strings: ["/Contact Me"],
+          typeSpeed: 100,
+          backSpeed: 60,
+          loop: false
+        })
+      });
+    </script>  
     <script>
       var vm = new Vue({
         el: '#app',
@@ -193,7 +230,7 @@
             themes: {
               dark: {
                 primary: '#19c113',
-                secondary: '#424242',
+                secondary: '#FFF',
                 accent: '#82B1FF',
                 error: '#FF5252',
                 info: '#2196F3',
