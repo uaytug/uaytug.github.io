@@ -88,6 +88,8 @@
               <h3 class="primary--text">{{jobTitle}}</h3>
               <p>{{jobDescription}}</p>
               <nav>
+                <v-btn href="#education" text="text" class="primary--text">/Education</v-btn>
+                <v-btn href="#experience" text="text" class="primary--text">/Experience</v-btn>
                 <v-btn href="#skills" text="text" class="primary--text">/Skills</v-btn>
                 <v-btn href="#works" text="text" class="primary--text">/Recent Works</v-btn>
                 <v-btn href="#hobbies" text="text" class="primary--text">/Hobbies</v-btn>
@@ -98,6 +100,43 @@
           </v-row>
         </header>
         <main class="container">
+            <section class="row mb-5" id="education">
+              <v-col cols="12" md="6">
+                  <h1 class="primary--text" data-aos="fade-up"><span class="education"></span></h1>
+              </v-col>
+              <v-col v-for="(edu, index) in education" cols="12" :key="index">
+                  <v-card hover="hover" height="100%" data-aos="fade-up">
+                      <v-card-text>
+                          <h2 class="primary--text">{{edu.degree}}</h2>
+                          <p>{{edu.institution}}</p>
+                          <p>{{edu.year}}</p>
+                      </v-card-text>
+                      <v-footer>
+                          <v-spacer></v-spacer>
+                          <small class="primary--text">~/.education</small>
+                      </v-footer>
+                  </v-card>
+              </v-col>
+            </section>
+            <section class="row mb-5" id="experience">
+              <v-col cols="12" md="6">
+                  <h1 class="primary--text" data-aos="fade-up"><span class="experience"></span></h1>
+              </v-col>
+              <v-col v-for="(exp, index) in experience" cols="12" :key="index">
+                  <v-card hover="hover" height="100%" data-aos="fade-up">
+                      <v-card-text>
+                          <h2 class="primary--text">{{exp.position}}</h2>
+                          <p>{{exp.company}}</p>
+                          <p>{{exp.year}}</p>
+                          <p>{{exp.description}}</p>
+                      </v-card-text>
+                      <v-footer>
+                          <v-spacer></v-spacer>
+                          <small class="primary--text">~/.experience</small>
+                      </v-footer>
+                  </v-card>
+              </v-col>
+          </section>
             <section class="row mb-5" id="skills">
                 <v-col cols="12" md="6">
                     <h1 class="primary--text" data-aos="fade-up"><span class="skills"></span></h1>
@@ -190,6 +229,26 @@
         })
       });
     </script>    
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var typed = new Typed(".education",{
+          strings: ["/Education"],
+          typeSpeed: 100,
+          backSpeed: 60,
+          loop: false
+        })
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var typed = new Typed(".experience",{
+          strings: ["/Experience"],
+          typeSpeed: 100,
+          backSpeed: 60,
+          loop: false
+        })
+      });
+    </script>
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         var typed = new Typed(".skills",{

@@ -1,18 +1,23 @@
 window.PorfolioConfig = {
     name: 'Umut Aytuğ Semerci',
     jobTitle: '3rd Grade Computer Engineering Student',
-    jobDescription: 'Passionate about coding and cybersecurity.',
+    jobDescription: 'Passionate about coding',
     skills: [
         { type: 'HTML', level: 100 },
         { type: 'CSS', level: 75 },
         { type: 'JavaScript', level: 75 },
         { type: 'Node.js', level: 75 },
         { type: 'Linux', level: 50 },
+        { type: 'Wireshark', level: 50 },
+        { type: 'Burp Suite', level: 50 },
+        { type: 'OWASP Zap', level: 50 },
         { type: 'Git', level: 50 },
+        { type: 'Playwright', level: 50 },
         { type: 'C', level: 50 },
         { type: 'C++', level: 50 },
         { type: 'Python', level: 25 },
         { type: 'React', level: 25 },
+        { type: 'Java', level: 25 },
         { type: 'MongoDB', level: 25 }
     ],
     works: [
@@ -35,8 +40,38 @@ window.PorfolioConfig = {
             name: 'Wordle Clone in JavaScript',
             link: 'https://github.com/uaytug/I2DLE',
             description: ' A JavaScript-based clone of the popular game Wordle, where players guess words.'
+        },
+        {
+            name: 'HTTP Request Tester',
+            link: 'https://github.com/OGCfumea/HttpTest',
+            description: 'Simple JS Server for checking http requests '
+        },
+        {
+            name: 'Java Matrix Operator',
+            link: 'https://github.com/uaytug/Java_Matrix_Operations',
+            description: 'Simple Java Application for matrix operations '
         }
     ],
+    education: [
+        { 
+            degree: '3.1', 
+            institution: 'Kadir Has University', 
+            year: '2025' 
+        },
+        { 
+            degree: '87', 
+            institution: 'Özel Üsküdar Fen Lisesi', 
+            year: '2021' 
+        },
+    ],
+    experience: [
+        { 
+            position: 'Intern', 
+            company: 'Sompo Sigorta', 
+            year: '2 Months', 
+            description: 'I did my internship on test automation at Sompo Sigorta' 
+        },
+    ],    
     hobbies: [
         {
             name: 'Playing Video Games',
@@ -49,6 +84,10 @@ window.PorfolioConfig = {
         {
             name: 'Music',
             description: 'I love listening to music and exploring different genres.'
+        },
+        {
+            name: 'Cyber Security',
+            description: 'I am interested in cyber security and I am currently learning about it.'
         },
         {
             name: 'Waterpolo',
