@@ -50,6 +50,11 @@ window.PorfolioConfig = {
             name: 'Java Matrix Operator',
             link: 'https://github.com/uaytug/Java_Matrix_Operations',
             description: 'Simple Java Application for matrix operations '
+        },
+        {
+            name:'Linux Alert Monitoring' ,
+            link:'https://github.com/uaytug/LinuxAlertMonitoring' ,
+            description:'Bash script that monitors the system usage and send alert via telegram'
         }
     ],
     education: [
