@@ -8,6 +8,7 @@ window.PorfolioConfig = {
         { type: 'JavaScript', level: 75 },
         { type: 'Node.js', level: 75 },
         { type: 'Linux', level: 50 },
+        { type: 'Bash', level: 50 },
         { type: 'Wireshark', level: 50 },
         { type: 'Burp Suite', level: 50 },
         { type: 'OWASP Zap', level: 50 },
