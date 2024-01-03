@@ -44,7 +44,7 @@ window.PorfolioConfig = {
         },
         {
             name: 'HTTP Request Tester',
-            link: 'https://github.com/OGCfumea/HttpTest',
+            link: 'https://github.com/uaytug/HTTPTester',
             description: 'Simple JS Server for checking http requests '
         },
         {
