@@ -53,6 +53,11 @@ window.PorfolioConfig = {
             description: 'Simple Java Application for matrix operations '
         },
         {
+            name: 'Password Strength Checker',
+            link: 'https://uaytug.github.io/passwordStrengthTester/',
+            description: ' Simple Password Strenght Tester with algorithms'
+        },
+        {
             name:'Linux Alert Monitoring' ,
             link:'https://github.com/uaytug/LinuxAlertMonitoring' ,
             description:'Bash script that monitors the system usage and send alert via telegram'
