@@ -25,7 +25,7 @@ window.PorfolioConfig = {
         {
             name: 'DCBell - Discord Music Bot',
             link: 'https://github.com/uaytug/DcBell-beta-public',
-            websiteLink: 'https://github.com/uaytug/DcBell-beta-public',
+            websiteLink: '',
             description: ' A Discord.js music bot named dcbell, created to play music in Discord voice channels.'
         },
         {
@@ -37,7 +37,7 @@ window.PorfolioConfig = {
         {
             name: 'Voting System in C',
             link: 'https://github.com/uaytug/Voting-System',
-            websiteLink: 'https://github.com/uaytug/Voting-System',
+            websiteLink: '',
             description: ' A C program for implementing a voting system with various functionalities.'
         },
         {
@@ -55,7 +55,7 @@ window.PorfolioConfig = {
         {
             name: 'Java Matrix Operator',
             link: 'https://github.com/uaytug/Java_Matrix_Operations',
-            websiteLink: 'https://github.com/uaytug/Java_Matrix_Operations',
+            websiteLink: '',
             description: 'Simple Java Application for matrix operations '
         },
         {
