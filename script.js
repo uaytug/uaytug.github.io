@@ -25,41 +25,55 @@ window.PorfolioConfig = {
         {
             name: 'DCBell - Discord Music Bot',
             link: 'https://github.com/uaytug/DcBell-beta-public',
+            websiteLink: 'https://github.com/uaytug/DcBell-beta-public',
             description: ' A Discord.js music bot named dcbell, created to play music in Discord voice channels.'
         },
         {
             name: 'Multi TV Page',
             link: 'https://github.com/uaytug/multitv',
+            websiteLink: 'https://uaytug.github.io/multitv/',
             description: ' A multi TV page project that allows users to watch multiple TV channels simultaneously.'
         },
         {
             name: 'Voting System in C',
             link: 'https://github.com/uaytug/Voting-System',
+            websiteLink: 'https://github.com/uaytug/Voting-System',
             description: ' A C program for implementing a voting system with various functionalities.'
         },
         {
             name: 'Wordle Clone in JavaScript',
             link: 'https://github.com/uaytug/I2DLE',
+            websiteLink: 'uaytug.github.io/I2DLE/',
             description: ' A JavaScript-based clone of the popular game Wordle, where players guess words.'
         },
         {
             name: 'HTTP Request Tester',
             link: 'https://github.com/uaytug/HTTPTester',
+            websiteLink: 'https://uaytug.github.io/HTTPTester/',
             description: 'Simple JS Server for checking http requests '
         },
         {
             name: 'Java Matrix Operator',
             link: 'https://github.com/uaytug/Java_Matrix_Operations',
+            websiteLink: 'https://github.com/uaytug/Java_Matrix_Operations',
             description: 'Simple Java Application for matrix operations '
         },
         {
+            name: 'IP Finder',
+            link: 'https://github.com/uaytug/ipfinder',
+            websiteLink: 'https://uaytug.github.io/ipfinder/ ',
+            description: ' IP Finder and IP Lookup page'
+        },
+        {
             name: 'Password Strength Checker',
-            link: 'https://uaytug.github.io/passwordStrengthTester/',
+            link: 'https://github.com/uaytug/passwordStrengthTester',
+            websiteLink: 'https://uaytug.github.io/passwordStrengthTester/',
             description: ' Simple Password Strenght Tester with algorithms'
         },
         {
             name:'Linux Alert Monitoring' ,
             link:'https://github.com/uaytug/LinuxAlertMonitoring' ,
+            websiteLink: '',
             description:'Bash script that monitors the system usage and send alert via telegram'
         }
     ],
