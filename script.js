@@ -79,7 +79,7 @@ window.PorfolioConfig = {
     ],
     education: [
         { 
-            degree: '3.1', 
+            degree: '3.15', 
             institution: 'Kadir Has University', 
             year: '2025' 
         },
