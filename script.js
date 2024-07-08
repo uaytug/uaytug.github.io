@@ -120,7 +120,7 @@ window.PorfolioConfig = {
         }
     ],
     contacts: {
-        email: 'umut-aytug@hotmail.com',
+        email: 'mail@uaytug.dev',
         links: [
             {
                 name: 'GitHub',
