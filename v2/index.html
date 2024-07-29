@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, minimal-ui">
+    <meta property="og:title" content="Umut Aytuğ Semerci" />
+    <meta property="og:description" content="Umut Aytuğ Semerci" />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="assets\pp.jpeg" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image:alt" content="Umut Aytuğ Semerci">
+    <meta name="twitter:title" content="Umut Aytuğ Semerci" />
+    <meta name="twitter:description" content="Computer Engineering Student and Cyber Security Enthusiast" />
+    <title>Umut Aytuğ Semerci</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="../assets/logo.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/logo.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../assets/logo.png">
+    <link rel="manifest" href="../favicon_package_v0.16/site.webmanifest">
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@4.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.min.css" rel="stylesheet">
+    <style>
+        #app {
+            background-color: black;
+            background-repeat: no-repeat;
+            background-size: 50;
+            background-attachment: fixed;
+            background-position-x: -92px;
+        }
+
+        .v-application,
+        .v-application .body-1,
+        .v-application .body-2,
+        .v-application .caption,
+        .v-application .display-1,
+        .v-application .display-2,
+        .v-application .display-3,
+        .v-application .display-4,
+        .v-application .headline,
+        .v-application .overline,
+        .v-application .subtitle-1,
+        .v-application .subtitle-2,
+        .v-application .title {
+            font-family: 'Source Code Pro', monospace !important;
+        }
+
+        :-webkit-any(article, aside, nav, section) h1 {
+            font-size: 2rem;
+            margin-block-start: 0.67em;
+            margin-block-end: 0.67em;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+          footer {
+          background-color: #000;
+          color: #00ff00;
+          text-align: center;
+          padding: 20px;
+          font-size: 16px;
+          }
+    </style>
+</head>
+<body>
+    
+
+<!-- _____                -->           
+<!--|  ___|   _ _ __ ___   ___  __ _ -->
+<!--| |_ | | | | '_ ` _ \ / _ \/ _` |-->
+<!--|  _|| |_| | | | | | |  __/ (_| |-->
+<!--|_|   \__,_|_| |_| |_|\___|\__,_|-->
+
+
+    <div id="app">
+      <v-app>
+        <header class="container" v-bind="sectionHeight">
+          <v-row align="center">
+            <v-col cols="12" md="6" data-aos="fade-up">
+              <h1 class="display-4 primary--text">Hi, I am</h1>
+              <h2 class="display-4 secondary--text"><span class="animName"></span></h2>
+              <h3 class="primary--text">{{jobTitle}}</h3>
+              <p>{{jobDescription}}</p>
+              <nav>
+                <v-btn href="#education" text="text" class="primary--text">/Education</v-btn>
+                <v-btn href="#experience" text="text" class="primary--text">/Experience</v-btn>
+                <v-btn href="#skills" text="text" class="primary--text">/Skills</v-btn>
+                <v-btn href="#works" text="text" class="primary--text">/Recent Works</v-btn>
+                <v-btn href="#hobbies" text="text" class="primary--text">/Hobbies</v-btn>
+                <v-btn href="#contact" text="text" class="primary--text">/Contacts</v-btn>
+                <v-btn href="old/index.html" text="text" class="primary--text">/Old</v-btn>
+              </nav>
+            </v-col>
+          </v-row>
+        </header>
+        <main class="container">
+            <section class="row mb-5" id="education">
+              <v-col cols="12" md="6">
+                  <h1 class="primary--text" data-aos="fade-up"><span class="education"></span></h1>
+              </v-col>
+              <v-col v-for="(edu, index) in education" cols="12" :key="index">
+                  <v-card hover="hover" height="100%" data-aos="fade-up">
+                      <v-card-text>
+                          <h2 class="primary--text">{{edu.institution}}</h2>
+                          <p>{{edu.degree}}</p>
+                          <p>{{edu.year}}</p>
+                      </v-card-text>
+                      <v-footer>
+                          <v-spacer></v-spacer>
+                          <small class="primary--text">~/.education</small>
+                      </v-footer>
+                  </v-card>
+              </v-col>
+            </section>
+            <section class="row mb-5" id="experience">
+              <v-col cols="12" md="6">
+                  <h1 class="primary--text" data-aos="fade-up"><span class="experience"></span></h1>
+              </v-col>
+              <v-col v-for="(exp, index) in experience" cols="12" :key="index">
+                  <v-card hover="hover" height="100%" data-aos="fade-up">
+                      <v-card-text>
+                          <h2 class="primary--text">{{exp.position}}</h2>
+                          <p>{{exp.company}}</p>
+                          <p>{{exp.year}}</p>
+                          <p>{{exp.description}}</p>
+                      </v-card-text>
+                      <v-footer>
+                          <v-spacer></v-spacer>
+                          <small class="primary--text">~/.experience</small>
+                      </v-footer>
+                  </v-card>
+              </v-col>
+          </section>
+            <section class="row mb-5" id="skills">
+                <v-col cols="12" md="6">
+                    <h1 class="primary--text" data-aos="fade-up"><span class="skills"></span></h1>
+                </v-col>
+                <v-col v-for="(skill, index) in skills" cols="12" :key="index">
+                    <v-card hover="hover" height="100%" data-aos="fade-up">
+                        <v-card-text>
+                            <h2 class="primary--text">{{skill.type}}</h2>
+                            <v-progress-linear :value="skill.level" height="10"></v-progress-linear>
+                        </v-card-text>
+                        <v-footer>
+                            <v-spacer></v-spacer>
+                            <small class="primary--text">~/.skills</small>
+                        </v-footer>
+                    </v-card>
+                </v-col>
+            </section>
+          <section class="row mb-5" id="works">
+            <v-col cols="12" md="6">
+              <h1 class="primary--text" data-aos="fade-up"><span class="works"></span></h1>
+            </v-col>
+            <v-col v-for="(work, index) in works" cols="12" :key="index">
+              <v-card hover="hover" height="100%" data-aos="fade-up">
+                <v-card-text>
+                  <h2 class="primary--text">{{work.name}}</h2>
+                  <br>
+                  <p>{{work.description}}</p>
+                  <a target="_blank" rel="noopener noreferrer" :href="work.link">View on Github</a><br />
+                  <a target="_blank" rel="noopener noreferrer" :href="work.websiteLink">View the project</a><br />
+                </v-card-text>
+                <v-footer>
+                  <v-spacer></v-spacer>
+                  <small class="primary--text">~/.works</small>
+                </v-footer>
+              </v-card>
+            </v-col>
+          </section>
+          <section class="row mb-5" id="hobbies">
+            <v-col cols="12" md="6">
+              <h1 class="primary--text" data-aos="fade-up"><span class="hobbies"></span></h1>
+            </v-col>
+            <v-col v-for="(hobby, index) in hobbies" cols="12" :key="index">
+              <v-card hover="hover" height="100%" data-aos="fade-up">
+                <v-card-text>
+                  <h2 class="primary--text">{{hobby.name}}</h2>
+                  <br>
+                  <p>{{hobby.description}}</p>
+                </v-card-text>
+                <v-footer>
+                  <v-spacer></v-spacer>
+                  <small class="primary--text">~/.hobbies</small>
+                </v-footer>
+              </v-card>
+            </v-col>
+          </section>
+          <section class="row justify-center" id="contact">
+            <v-col cols="12" md="10" class="text-center">
+              <h1 class="primary--text" data-aos="fade-up"><span class="contact"></span></h1>
+            </v-col>
+            <v-col cols="12" sm="6" md="4" class="text-center">
+              <v-row>
+                <v-col class="text-center" cols="12" data-aos="fade-up">
+                  <h3 v-if="contacts && contacts.email"><a href="mailto:mail@uaytug.dev">{{contacts.email}}</a></h3>
+                </v-col>
+                <v-col class="text-center" cols="12" data-aos="fade-up">
+                  <v-btn class="ma-1" v-for="(link, index) in contactLinks" outlined="outlined" rounded="rounded" target="_blank" :href="link.link" :key="index" color="primary">
+                    {{link.name}}
+                  </v-btn>
+                </v-col>
+              </v-row>
+            </v-col>
+          </section>
+        </main>
+      </v-app>
+    </div>
+    <footer>
+      <p>&copy; 2023 Umut Aytuğ Semerci</p>
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.x/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vuetify@2.x/dist/vuetify.js"></script>
+    <script src="script.js"></script>
+    <script src="https://unpkg.com/typed.js@2.0.16/dist/typed.umd.js"></script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var typed = new Typed(".animName",{
+          strings: ["Umut", "Aytuğ"],
+          typeSpeed: 100,
+          backSpeed: 60,
+          loop: true
+        })
+      });
+    </script>    
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var typed = new Typed(".education",{
+          strings: ["/Education"],
+          typeSpeed: 100,
+          backSpeed: 60,
+          loop: false
+        })
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var typed = new Typed(".experience",{
+          strings: ["/Experience"],
+          typeSpeed: 100,
+          backSpeed: 60,
+          loop: false
+        })
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var typed = new Typed(".skills",{
+          strings: ["/Skills"],
+          typeSpeed: 100,
+          backSpeed: 60,
+          loop: false
+        })
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var typed = new Typed(".works",{
+          strings: ["/Recent Works"],
+          typeSpeed: 100,
+          backSpeed: 60,
+          loop: false
+        })
+      });
+    </script> 
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var typed = new Typed(".hobbies",{
+          strings: ["/My Hobbies"],
+          typeSpeed: 100,
+          backSpeed: 60,
+          loop: false
+        })
+      });
+    </script>   
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        var typed = new Typed(".contact",{
+          strings: ["/Contact Me"],
+          typeSpeed: 100,
+          backSpeed: 60,
+          loop: false
+        })
+      });
+    </script>  
+    <script>
+      var vm = new Vue({
+        el: '#app',
+        vuetify: new Vuetify({
+          theme: {
+            dark: true,
+            themes: {
+              dark: {
+                primary: '#19c113',
+                secondary: '#FFF',
+                accent: '#82B1FF',
+                error: '#FF5252',
+                info: '#2196F3',
+                success: '#4CAF50',
+                warning: '#FFC107'
+              }
+            }
+          }
+        }),
+        data() {
+          return {
+            menu: false,
+            ...window.PorfolioConfig
+          };
+        },
+        computed: {
+          $isMobile() {
+            return this.$vuetify.breakpoint.smAndDown;
+          },
+          sectionHeight() {
+            return {style: 'min-height: 100vh', class: 'fill-height'}
+          },
+          contactLinks() {
+            if (this.contacts && this.contacts.links && this.contacts.links.length) {
+              return this.contacts.links;
+            }
+            return [];
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

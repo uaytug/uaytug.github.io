@@ -74,7 +74,7 @@ window.PorfolioConfig = {
             name:'Linux Alert Monitoring' ,
             link:'https://github.com/uaytug/LinuxAlertMonitoring' ,
             websiteLink: '',
-            description:'Bash script that monitors the system usage and send alert via telegram'
+            description:'Bash scripts that monitors the system usage and send alert via telegram'
         }
     ],
     education: [

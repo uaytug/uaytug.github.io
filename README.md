@@ -1,6 +1,12 @@
-# Fumea | Umut Aytuğ Semerci
+# Umut Aytuğ Semerci
 
 This is a [personal website](https://www.uaytug.dev/) created by Umut Aytuğ Semerci (Me).
+
+There are currently 2 versions available to see and version 3 is under development
+
+- [Version 1](https://www.uaytug.dev/v1/index.html)
+- [Version 2](https://www.uaytug.dev/v2/index.html)
+- [Version 3 (***Under Development***)](https://www.uaytug.dev/v3/index.html)
 
 ## Table of Contents
 

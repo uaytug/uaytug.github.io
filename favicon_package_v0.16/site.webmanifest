@@ -1,7 +1,7 @@
 {
     "name": "Umut Aytuğ Semerci",
     "short_name": "Portfolio",
-    "description": "A portfolio website for Umut Aytuğ Semerci, Computer Engineering Student and Cyber Security Enthusiast.",
+    "description": "A portfolio website for Umut Aytuğ Semerci",
     "start_url": "./index.html",
     "display": "standalone",
     "background_color": "#000000",

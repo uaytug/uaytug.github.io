@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Umut Aytuğ Semerci</title>
+  <link href="https://fonts.googleapis.com/css2?family=Racing+Sans+One&display=swap" rel="stylesheet">
+  <style>
+    body {
+      background-color: black;
+      color: white;
+      font-family: 'Racing Sans One', cursive;
+      font-size: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+    .rgb-text {
+      font-size: 5rem;
+      font-weight: bold;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+  </style>
+</head>
+<body>
+<div class="rgb-text">Under Development</div>
+<a rel="noopener noreferrer" href="https://www.uaytug.dev"> Visit old page</a>
+<script>
+  function changeColor() {
+    const r = Math.floor(Math.random() * 256);
+    const g = Math.floor(Math.random() * 256);
+    const b = Math.floor(Math.random() * 256);
+    const rgbColor = `rgb(${r}, ${g}, ${b})`;
+    document.querySelector(".rgb-text").style.color = rgbColor;
+  }
+  setInterval(changeColor, 2000);
+</script>
+</body>
