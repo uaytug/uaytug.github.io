@@ -1,12 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Redirecting...</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portfolio</title>
+  <!-- Link to external CSS file -->
+  <link rel="stylesheet" href="style.css">
+  <!-- Include Vue.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
 </head>
 <body>
-    <script>
-        window.location.href = "./page/home.html";
-    </script>
+<div id="app" class="container">
+  <div class="header">
+    <h1>{{ name }}</h1>
+    <h2>{{ jobTitle }}</h2>
+    <p>{{ jobDescription }}</p>
+  </div>
+
+  <div class="section">
+    <h2>Skills</h2>
+    <div class="skills">
+      <div v-for="skill in skills" :key="skill.type" class="skill">
+        <p>{{ skill.type }}</p>
+        <div class="progress-bar">
+          <div class="progress" :style="{ width: skill.level + '%' }"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Works</h2>
+    <div class="projects">
+      <div v-for="work in works" :key="work.name" class="project">
+        <h3>{{ work.name }}</h3>
+        <p>{{ work.description }}</p>
+        <a :href="work.link" target="_blank" v-if="work.link">GitHub</a>
+        <a :href="work.websiteLink" target="_blank" v-if="work.websiteLink">Live Demo</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Experience</h2>
+    <div class="experiences">
+      <div v-for="experience in experience" :key="experience.position" class="experience">
+        <h3>{{ experience.position }} at {{ experience.company }}</h3>
+        <p>{{ experience.subject }} - {{ experience.year }}</p>
+        <p>{{ experience.description }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Education</h2>
+    <div class="educations">
+      <div v-for="education in education" :key="education.degree" class="education">
+        <h3>{{ education.degree }} - {{ education.institution }}</h3>
+        <p>{{ education.year }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Hobbies</h2>
+    <div class="hobbies">
+      <div v-for="hobby in hobbies" :key="hobby.name" class="hobby">
+        <h3>{{ hobby.name }}</h3>
+        <p>{{ hobby.description }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Contact</h2>
+    <p>Email: <a :href="'mailto:' + contacts.email">{{ contacts.email }}</a></p>
+    <div v-for="link in contacts.links" :key="link.name">
+      <a :href="link.link" target="_blank">{{ link.name }}</a>
+    </div>
+  </div>
+</div>
+
+<!-- Link to external JavaScript file -->
+<script src="script.js"></script>
 </body>
 </html>
