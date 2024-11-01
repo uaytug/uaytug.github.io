@@ -1,26 +1,19 @@
 {
   "name": "Umut Aytuğ Semerci",
   "jobTitle": "4th Grade Computer Engineering Student",
-  "jobDescription": "The normal one.",
+  "jobDescription": "",
   "skills": [
-    { "type": "HTML", "level": 100 },
-    { "type": "CSS", "level": 75 },
     { "type": "JavaScript", "level": 75 },
     { "type": "Node.js", "level": 75 },
-    { "type": "Vue", "level": 50},
-    { "type": "Linux", "level": 50 },
     { "type": "Bash", "level": 50 },
     { "type": "Wireshark", "level": 50 },
     { "type": "Burp Suite", "level": 50 },
     { "type": "OWASP Zap", "level": 50 },
-    { "type": "Git", "level": 50 },
-    { "type": "Playwright", "level": 50 },
     { "type": "C", "level": 50 },
     { "type": "C++", "level": 50 },
     { "type": "Python", "level": 25 },
     { "type": "React", "level": 25 },
-    { "type": "Java", "level": 25 },
-    { "type": "MongoDB", "level": 25 }
+    { "type": "Java", "level": 25 }
   ],
   "works": [
     {
@@ -104,6 +97,13 @@
       "subject": "Cyber Security",
       "year": "1 Month",
       "description": "I did my internship on cyber security at A101."
+    },
+    {
+      "position": "Intern",
+      "company": "Brandefense",
+      "subject": "Cyber Security",
+      "year": "2 Month",
+      "description": "I did my internship on cyber security at Brandefense."
     }
   ],
   "hobbies": [
@@ -145,7 +145,7 @@
       },
       {
         "name": "Resume",
-        "link": "assets/Resume.pdf"
+        "link": "../assets/Resume.pdf"
       }
     ]
   }

@@ -1,4 +1,3 @@
-// script.js
 new Vue({
     el: '#app',
     data: {
@@ -27,4 +26,23 @@ new Vue({
                 this.contacts = data.contacts;
             });
     }
+});
+
+// Ek Animasyonlar ve Efektler
+document.addEventListener('DOMContentLoaded', () => {
+    // Scroll animasyonları için Intersection Observer
+    const sections = document.querySelectorAll('.section');
+    const observerOptions = {
+        threshold: 0.2
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('animate-section');
+            }
+        });
+    }, observerOptions);
+
+    sections.forEach(section => observer.observe(section));
 });
