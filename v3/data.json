@@ -1,7 +1,7 @@
 {
   "name": "Umut Aytuğ Semerci",
   "jobTitle": "4th Grade Computer Engineering Student",
-  "jobDescription": "",
+  "jobDescription": "I am a 4th grade computer engineering student at Kadir Has University. I am interested in cyber security and I am currently learning about it.",
   "skills": [
     { "type": "JavaScript", "level": 75 },
     { "type": "Node.js", "level": 75 },
@@ -11,11 +11,19 @@
     { "type": "OWASP Zap", "level": 50 },
     { "type": "C", "level": 50 },
     { "type": "C++", "level": 50 },
+    { "type": "Rust", "level": 25 },
+    { "type": "Go", "level": 25 },
     { "type": "Python", "level": 25 },
     { "type": "React", "level": 25 },
     { "type": "Java", "level": 25 }
   ],
   "works": [
+    {
+      "name": "NeuroDefender",
+      "link": "https://github.com/neurodefender",
+      "websiteLink": "",
+      "description": "A Complete Cyber Security System for Defending Against Cyber Attacks. (In Progress)"
+    },
     {
       "name": "DCBell - Discord Music Bot",
       "link": "https://github.com/uaytug/DcBell-beta-public",
@@ -104,28 +112,20 @@
       "subject": "Cyber Security",
       "year": "2 Month",
       "description": "I did my internship on cyber security at Brandefense."
-    }
-  ],
-  "hobbies": [
-    {
-      "name": "Playing Video Games",
-      "description": "I enjoy playing a variety of video games in my free time."
+    },
+    {      
+      "position": "Teaching Assistant",
+      "company": "Kadir Has University",
+      "subject": "Computer Networks",
+      "year": "1 Term",
+      "description": "I was a teaching assistant for the Computer Networks course at Kadir Has University."
     },
     {
-      "name": "Coding",
-      "description": "Coding is not just my profession but also my passion."
-    },
-    {
-      "name": "Music",
-      "description": "I love listening to music and exploring different genres."
-    },
-    {
-      "name": "Cyber Security",
-      "description": "I am interested in cyber security and I am currently learning about it."
-    },
-    {
-      "name": "Waterpolo",
-      "description": "I used to play waterpolo professionally for 10 years and I still follow the Turkish league."
+      "position": "Teaching Assistant",
+      "company": "Kadir Has University",
+      "subject": "Network Engineering",
+      "year": "1 Term",
+      "description": "I was a teaching assistant for the Network Engineering course at Kadir Has University."
     }
   ],
   "contacts": {
@@ -138,14 +138,6 @@
       {
         "name": "LinkedIn",
         "link": "https://www.linkedin.com/in/uaytug"
-      },
-      {
-        "name": "Instagram",
-        "link": "https://www.instagram.com/u.aytug/"
-      },
-      {
-        "name": "Resume",
-        "link": "../assets/Resume.pdf"
       }
     ]
   }
