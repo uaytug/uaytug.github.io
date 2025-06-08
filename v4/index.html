@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Umut Aytuğ Semerci</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://unpkg.com/vue-i18n@9/dist/vue-i18n.global.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/x-icon" href="../assets/logo.png">
+    <style>
+        /* --- TEMA DEĞİŞKENLERİ --- */
+        :root { --font-terminal: 'VT323', monospace; --font-main: 'Share Tech Mono', monospace; }
+        html.dark {
+            --bg-color: #0A0A0A;
+            --text-color: #E0E0E0;
+            --accent-color: #00FF41;
+            --header-color: #00FF41;
+            --card-bg: #111;
+            --card-border: rgba(0, 255, 65, 0.4);
+            --shadow-color: rgba(0, 255, 65, 0.4);
+            --accent-light: rgba(0, 255, 65, 0.07);
+        }
+        html.light {
+            --bg-color: #F0F0F0;
+            --text-color: #1a1a1a;
+            --accent-color: #0b6b0b;
+            --header-color: #1a1a1a;
+            --card-bg: #FFFFFF;
+            --card-border: #ccc;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --accent-light: #f0fff0;
+        }
+
+        /* --- ANİMASYONLAR --- */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+        @keyframes blink { 50% { opacity: 0; } }
+
+        /* --- TEMEL SAYFA VE GEÇİŞ STİLLERİ --- */
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; background-color: #0A0A0A; }
+        body {
+            font-family: var(--font-main);
+            background-color: transparent;
+            color: var(--text-color);
+            transition: background-color 0.4s ease, color 0.4s ease;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+        #app {
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.8s ease-in-out;
+        }
+        #app.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        #matrix-canvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -2; filter: blur(2px); opacity: 0.7;
+        }
+
+        /* --- BOOT EKRANI --- */
+        #boot-screen {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-color: #000000;
+            background-image: 
+                radial-gradient(ellipse at top, #0a0a0a 0%, #000000 100%),
+                repeating-linear-gradient(
+                    0deg,
+                    transparent,
+                    transparent 2px,
+                    rgba(0, 255, 65, 0.03) 2px,
+                    rgba(0, 255, 65, 0.03) 4px
+                );
+            color: #00FF41;
+            font-family: var(--font-terminal);
+            z-index: 100;
+            padding: 1.5rem;
+            overflow-y: auto;
+            overflow-x: hidden;
+            font-size: 1rem;
+            text-shadow: 0 0 5px rgba(0, 255, 65, 0.5);
+            scroll-behavior: smooth;
+        }
+        #boot-log { 
+            white-space: pre-wrap; 
+            word-break: break-all;
+            max-width: 1200px;
+            margin: 0 auto;
+            line-height: 1.4;
+            padding-bottom: 2rem;
+        }
+        .boot-line { 
+            display: block;
+            margin: 0;
+            opacity: 0;
+            animation: fadeIn 0.3s forwards;
+        }
+        .boot-line .status-ok { 
+            color: #00FF41; 
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 0.8);
+        }
+        .boot-line .status-info { 
+            color: #00BFFF; 
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(0, 191, 255, 0.8);
+        }
+        .boot-line .status-fail { 
+            color: #FF0040; 
+            font-weight: bold;
+            text-shadow: 0 0 10px rgba(255, 0, 64, 0.8);
+        }
+        .blinking-cursor { 
+            animation: blink 1s step-end infinite; 
+            color: #00FF41;
+            text-shadow: 0 0 10px rgba(0, 255, 65, 1);
+        }
+        #boot-screen::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                transparent,
+                transparent 2px,
+                rgba(0, 0, 0, 0.3) 2px,
+                rgba(0, 0, 0, 0.3) 4px
+            );
+            pointer-events: none;
+            animation: scan 8s linear infinite;
+        }
+        @keyframes scan {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(10px); }
+        }
+
+        /* --- ANA PORTFOLYO STİLLERİ --- */
+        .container { max-width: 1000px; margin: 0 auto; padding: 2rem 1rem; }
+        .section {
+            margin-bottom: 3rem; 
+            border: 1px solid var(--card-border); 
+            padding: 2rem;
+            background-color: var(--card-bg); 
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 10px var(--shadow-color);
+        }
+        .section-title { font-size: 2rem; color: var(--accent-color); margin-bottom: 1rem; }
+        .section-title::before { content: '> '; }
+        
+        .header { display: flex; justify-content: space-between; align-items: center; padding-bottom: 1rem; border-bottom: 2px solid var(--card-border); margin-bottom: 2rem; }
+        .header-title { font-family: var(--font-terminal); font-size: 1.8rem; color: var(--header-color); }
+        .header-controls { display: flex; align-items: center; gap: 1rem; }
+        .theme-switcher { font-family: var(--font-terminal); background-color: transparent; color: var(--accent-color); border: 1px solid var(--accent-color); padding: 0.5rem 1rem; font-size: 1rem; cursor: pointer; transition: all 0.2s ease; }
+        .theme-switcher:hover { background-color: var(--accent-color); color: var(--bg-color); box-shadow: 0 0 15px var(--shadow-color); }
+        
+        .lang-switcher a { font-family: var(--font-terminal); color: var(--text-color); text-decoration: none; font-size: 1rem; opacity: 0.6; }
+        .lang-switcher a.active, .lang-switcher a:hover { opacity: 1; color: var(--accent-color); }
+        .lang-switcher span { color: var(--accent-color); opacity: 0.5; }
+
+        .project-filters { margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .filter-btn { font-family: var(--font-terminal); font-size: 1rem; background: transparent; border: 1px solid var(--accent-color); color: var(--accent-color); padding: 0.3rem 0.8rem; cursor: pointer; transition: all 0.2s ease; }
+        .filter-btn.active, .filter-btn:hover { background: var(--accent-color); color: var(--bg-color); }
+        .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+        .project-card { 
+            background-color: var(--card-bg); 
+            border: 1px solid var(--card-border); 
+            padding: 1.5rem; 
+            display: flex; 
+            flex-direction: column; 
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            min-height: 250px;
+        }
+        .project-card:hover { 
+            transform: translateY(-5px); 
+            box-shadow: 0 5px 20px var(--shadow-color); 
+        }
+        .project-card h3 { 
+            font-family: var(--font-terminal); 
+            font-size: 1.5rem; 
+            color: var(--header-color); 
+            margin-bottom: 0.8rem; 
+        }
+        .project-card p {
+            margin-bottom: 1rem;
+            flex-grow: 1;
+        }
+        .project-links { 
+            margin-bottom: 1rem;
+        }
+        .project-links a { 
+            color: var(--accent-color); 
+            text-decoration: none; 
+            margin-right: 1rem;
+            font-size: 0.95rem;
+            transition: opacity 0.2s ease;
+        }
+        .project-links a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+        .project-tags { 
+            margin-top: auto; 
+            padding-top: 1rem; 
+            display: flex;
+            flex-wrap: wrap; 
+            gap: 0.5rem; 
+        }
+        .project-tags span {
+            display: inline-block;
+            font-size: 0.9rem;
+            background-color: var(--accent-light);
+            border: 1px solid var(--accent-color);
+            padding: 4px 10px;
+            white-space: nowrap;
+            line-height: 1.2;
+        }
+        .cite { color: var(--accent-color); font-size: 0.8em; vertical-align: super; opacity: 0.7; }
+        a { 
+            color: var(--accent-color); 
+            text-decoration: none; 
+            transition: opacity 0.2s ease;
+        }
+        a:hover {
+            opacity: 0.8;
+            text-decoration: underline;
+        }
+        .skills-list { 
+            list-style-type: none; 
+            padding: 0; 
+        }
+        .skills-list li {
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+        }
+        .skills-list li strong {
+            color: var(--accent-color);
+            margin-right: 0.5rem;
+        }
+        .contact-list { 
+            list-style-type: none; 
+            padding: 0; 
+        }
+        .contact-list li { 
+            margin-bottom: 0.5rem; 
+        }
+        .contact-list li::before { 
+            content: '» '; 
+            color: var(--accent-color); 
+        }
+        .experience-item { margin-bottom: 1.5em; }
+        .experience-item h3 { font-size: 1.4em; color: var(--header-color); }
+        .experience-item p { margin: 0.2em 0; }
+        .experience-item ul { list-style-type: none; padding-left: 1em; margin-top: 0.5em; }
+        .experience-item ul li::before { content: '» '; color: var(--accent-color); }
+
+        /* --- FOOTER STİLLERİ --- */
+        .footer { text-align: center; padding: 2rem 0 1rem 0; margin-top: 3rem; border-top: 1px solid var(--card-border); color: var(--text-color); opacity: 0.8; font-size: 0.9rem; }
+        .footer-links { margin-bottom: 0.5rem; }
+        .footer-links a { margin: 0 10px; font-size: 1.2rem; }
+        .footer-links a:hover { text-shadow: 0 0 8px var(--shadow-color); }
+        
+        /* --- RESPONSIVE TASARIM --- */
+        /* Tablet - 768px to 1024px */
+        @media (max-width: 1024px) {
+            .container { max-width: 900px; padding: 2rem 1.5rem; }
+            .projects-grid { grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); }
+        }
+
+        /* Mobile Landscape & Small Tablets - 576px to 768px */
+        @media (max-width: 768px) {
+            body { font-size: 1rem; line-height: 1.6; }
+            .container { padding: 1.5rem 1rem; }
+            .section { padding: 1.2rem; margin-bottom: 2rem; }
+            .section-title { font-size: 1.6rem; }
+            .header { 
+                flex-direction: column; 
+                align-items: flex-start; 
+                gap: 1rem; 
+                padding-bottom: 1.5rem;
+            }
+            .header-title { font-size: 1.5rem; }
+            .header-controls { 
+                width: 100%;
+                justify-content: space-between;
+            }
+            .project-card { padding: 1.2rem; }
+            .project-card h3 { font-size: 1.3rem; }
+            .projects-grid { 
+                grid-template-columns: 1fr; 
+                gap: 1rem;
+            }
+            .experience-item { margin-bottom: 1.2em; }
+            .experience-item h3 { font-size: 1.2em; }
+            .filter-btn { 
+                padding: 0.4rem 0.8rem; 
+                font-size: 0.95rem; 
+            }
+            .project-filters { gap: 0.4rem; }
+            .skills-list li { 
+                line-height: 1.8; 
+                word-break: break-word;
+            }
+            .theme-switcher { 
+                padding: 0.4rem 0.8rem; 
+                font-size: 0.9rem; 
+            }
+        }
+
+        /* Mobile Portrait - 320px to 576px */
+        @media (max-width: 576px) {
+            body { font-size: 0.95rem; }
+            .container { padding: 1rem 0.75rem; }
+            .section { 
+                padding: 1rem; 
+                margin-bottom: 1.5rem;
+            }
+            .section-title { 
+                font-size: 1.4rem; 
+                margin-bottom: 0.8rem;
+            }
+            .header-title { font-size: 1.3rem; }
+            .header-controls {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0.5rem;
+                width: 100%;
+            }
+            .lang-switcher { order: 2; }
+            .theme-switcher { 
+                order: 1;
+                width: 100%;
+            }
+            .project-card { padding: 1rem; }
+            .project-card h3 { font-size: 1.2rem; }
+            .project-links { font-size: 0.9rem; }
+            .project-tags span { font-size: 0.85rem; }
+            .experience-item h3 { font-size: 1.1em; }
+            .experience-item p { font-size: 0.9rem; }
+            .filter-btn { 
+                padding: 0.3rem 0.6rem; 
+                font-size: 0.85rem; 
+            }
+            .contact-list { font-size: 0.95rem; }
+            .footer { 
+                padding: 1.5rem 0 1rem 0; 
+                font-size: 0.85rem; 
+            }
+            .footer-links a { 
+                font-size: 1rem; 
+                margin: 0 5px;
+            }
+            /* Better text wrapping for skills on mobile */
+            .skills-list li {
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+                margin-bottom: 1rem;
+            }
+            .skills-list li strong {
+                display: block;
+                margin-bottom: 0.3rem;
+            }
+        }
+
+        /* Very small devices */
+        @media (max-width: 380px) {
+            body { font-size: 0.9rem; }
+            .header-title { 
+                font-size: 1.1rem; 
+                word-break: break-word;
+            }
+            .section-title { font-size: 1.2rem; }
+            .project-card h3 { font-size: 1.1rem; }
+        }
+
+        /* Landscape orientation adjustments */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .container { padding: 1rem; }
+            .section { margin-bottom: 1.5rem; }
+            .header { padding-bottom: 1rem; }
+        }
+    </style>
+</head>
+<body class="dark">
+
+    <div id="boot-screen">
+        <pre id="boot-log"></pre>
+    </div>
+
+    <div id="app">
+        <canvas id="matrix-canvas"></canvas>
+        <div class="container">
+            <header class="header">
+                <div class="header-title">{{ $t('headerTitle') }}</div>
+                <div class="header-controls">
+                    <div class="lang-switcher">
+                        <a href="#" @click.prevent="setLang('tr')" :class="{active: $i18n.locale === 'tr'}">TR</a>
+                        <span>|</span>
+                        <a href="#" @click.prevent="setLang('en')" :class="{active: $i18n.locale === 'en'}">EN</a>
+                    </div>
+                    <button @click="toggleTheme" class="theme-switcher">
+                        {{ theme === 'dark' ? $t('themeSwitchLight') : $t('themeSwitchDark') }}
+                    </button>
+                </div>
+            </header>
+            <main>
+                <section id="skills" class="section">
+                    <h2 class="section-title">{{ $t('sectionTitles.skills') }}</h2>
+                     <ul class="skills-list">
+                        <li><strong>{{ $t('skills.core_title') }}:</strong> <span v-for="(skill, index) in $tm('skills.core_list')" :key="index">{{ skill }}<span v-if="index < $tm('skills.core_list').length - 1">, </span></span><span class="cite"></span></li>
+                        <li><strong>{{ $t('skills.languages_title') }}:</strong> <span v-for="(lang, index) in $tm('skills.languages_list')" :key="index">{{ lang }}<span v-if="index < $tm('skills.languages_list').length - 1">, </span></span><span class="cite"></span></li>
+                    </ul>
+                </section>
+                <section id="experience" class="section">
+                    <h2 class="section-title">{{ $t('sectionTitles.experience') }}</h2>
+                    <div v-for="job in $tm('experience')" class="experience-item">
+                        <h3>{{ job.title }}</h3>
+                        <p>{{ job.company }} | <span>{{ job.dates }}</span></p>
+                        <ul><li v-for="duty in job.duties">{{ duty.text }} <span class="cite"></span></li></ul>
+                    </div>
+                </section>
+                <section id="projects" class="section">
+                    <h2 class="section-title">{{ $t('sectionTitles.projects') }}</h2>
+                    <div class="project-filters">
+                        <button @click="selectTag('All')" class="filter-btn" :class="{ active: selectedTag === 'All' }">{{ $t('projects.all_filter') }}</button>
+                        <button v-for="tag in allTags" @click="selectTag(tag)" class="filter-btn" :class="{ active: selectedTag === tag }">{{ tag }}</button>
+                    </div>
+                    <div class="projects-grid">
+                        <div v-for="project in filteredProjects" class="project-card">
+                            <div>
+                                <h3>{{ project.title }}</h3>
+                                <p><span v-for="desc in project.description">{{ desc.text }} <span class="cite"></span></span></p>
+                            </div>
+                            <div class="project-links"><a :href="project.github" target="_blank" rel="noopener noreferrer">GitHub</a><a v-if="project.website" :href="project.website" target="_blank" rel="noopener noreferrer">{{ $t('projects.website_link') }}</a></div>
+                            <div class="project-tags"><span v-for="tag in project.tags">{{ tag }}</span></div>
+                        </div>
+                    </div>
+                </section>
+                <section id="education" class="section">
+                    <h2 class="section-title">{{ $t('sectionTitles.education') }}</h2>
+                    <ul>
+                        <li v-for="line in $tm('education')">{{ line }}<span class="cite"></span></li>
+                    </ul>
+                </section>
+                <section id="contact" class="section">
+                    <h2 class="section-title">{{ $t('sectionTitles.contact') }}</h2>
+                    <ul class="contact-list">
+                        <li>{{ $t('contact.email_label') }}: <a :href="'mailto:' + $t('contact.email_address')">{{ $t('contact.email_address') }}</a></li>
+                        <li v-for="link in $tm('contact.links')">
+                            {{ link.name }}: <a :href="link.link" target="_blank" rel="noopener noreferrer">{{ link.link }}</a>
+                        </li>
+                    </ul>
+                </section>
+            </main>
+
+            <footer class="footer">
+                <div class="footer-links">
+                    <a :href="'mailto:' + $t('contact.email_address')">{{ $t('footer.email') }}</a> <a href="/assets/Resume.pdf" target="_blank" rel="noopener noreferrer">{{ $t('footer.resume') }}</a> |
+                    <a v-for="link in $tm('contact.links')" :href="link.link" target="_blank" rel="noopener noreferrer">{{ link.name }}</a>
+                </div>
+                <p>&copy; {{ new Date().getFullYear() }} {{ $t('footer.copyright') }}</p>
+            </footer>
+        </div>
+    </div>
+
+    <script>
+        const { createApp } = Vue;
+        const { createI18n } = VueI18n;
+
+        // --- DİL DOSYALARI ---
+        const messages = {
+            en: {
+                headerTitle: '[Umut Aytuğ Semerci]',
+                themeSwitchLight: 'LIGHT_MODE',
+                themeSwitchDark: 'DARK_MODE',
+                sectionTitles: {
+                    skills: 'skills --list',
+                    experience: 'cat /var/log/experience.log',
+                    projects: 'ls -R /projects',
+                    education: 'grep -i "BSc" education.txt',
+                    contact: 'get_in_touch',
+                },
+                skills: {
+                    core_title: 'Core',
+                    core_list: ['Web Development', 'Software Engineering', 'Computer Network', 'Cyber Security', 'Test Automation'],
+                    languages_title: 'Languages',
+                    languages_list: ['C', 'C++', 'Python', 'Rust', 'Go', 'Java', 'HTML', 'CSS', 'JavaScript', 'Vue', 'NodeJS', 'Express.JS', 'MongoDB', 'SQL', 'Bash'] 
+                },
+                experience: [
+                    { title: 'Network Engineering 1 (CMPE451) Teaching Assistant', company: 'Kadir Has University', dates: 'February 2025-June 2025', duties: [{ text: "Served as Teaching Assistant for CMPE-451 Network Engineering I course, assisting in the delivery of Cisco's CCNA v7 curriculum to undergraduate students." }, { text: "Guided students through practical implementations of networking concepts including IP addressing, Ethernet switching, VLAN configuration, and wireless networking." }] },
+                    { title: 'Computer Networks (CMPE351) Teaching Assistant', company: 'Kadir Has University', dates: 'September 2024-January 2025', duties: [{ text: "Assisted students in understanding core networking concepts, including protocols, routing, and network architecture." }, { text: "Help students with hands-on lab activities." }] },
+                    { title: 'Intern', company: 'BRANDEFENSE', dates: 'August 2024-August 2024', duties: [{ text: "Conducted research on advanced cybersecurity threats and tools." }, { text: "Explored innovative cybersecurity methodologies." }] },
+                    { title: 'Cyber Security Intern', company: 'A101 Yeni Mağazacılık A.Ş.', dates: 'June 2024-June 2024', duties: [{ text: "Conducted security event monitoring and threat analysis." }, { text: "Participated in implementing secure configurations." }] },
+                    { title: 'Software Development Intern', company: 'Sompo Sigorta', dates: 'June 2023-August 2023', duties: [{ text: "Develop and maintain test automation scripts and frameworks using tools like Puppeteer.js." }, { text: "Execute automated tests across diverse platforms and environments, ensuring comprehensive test coverage." }] }
+                ],
+                projects: {
+                    all_filter: 'All',
+                    website_link: 'Website',
+                    list: [
+                        { title: 'Neurodefender IDPS', github: 'https://github.com/uaytug/neurodefender', website: null, tags: ['Cyber Security', 'ML', 'Python', 'Rust'], description: [{ text: 'Developed a Network Intrusion Detection and Prevention system that will detect the network anomalies using ML.' }, { text: 'Integrated BERT based machine learning and developed a light-weight IDPS for edge or resource constrained devices.' }] },
+                        { title: 'Discord Music Bot', github: 'https://github.com/uaytug/DcBell-beta-public', website: null, tags: ['JavaScript', 'NodeJS'], description: [{ text: 'Developed a Discord.js music bot, enabling users to play music from various sources including YouTube and Soundcloud.' }, { text: 'Integrated advanced queue management, volume control for enhanced user experience.' }] },
+                        { title: 'Voting System in C', github: 'https://github.com/uaytug/Voting-System', website: null, tags: ['C', 'Algorithms'], description: [{ text: 'Created a robust C program for implementing a secure and efficient voting system with user authentication and candidate registration functionalities.' }, { text: 'Utilized data structures and algorithms to optimize performance and scalability, ensuring accurate vote counting.' }] },
+                        { title: 'Wordle Clone in JavaScript', github: 'https://github.com/uaytug/I2DLE', website: 'https://www.uaytug.dev/I2DLE/', tags: ['JavaScript', 'HTML/CSS'], description: [{ text: 'Engineered a JavaScript-based clone of the popular game Wordle, an word-guessing experience.' }, { text: 'Designed an intuitive user interface and ensured compatibility across different devices for seamless gameplay.' }] },
+                        { title: 'HTTP Request Tester', github: 'https://github.com/uaytug/HTTPTester', website: 'https://www.uaytug.dev/HTTPTester/', tags: ['JavaScript', 'NodeJS', 'API'], description: [{ text: 'Developed a simple JS server for testing HTTP requests, with endpoints for various HTTP methods and error responses.' }, { text: 'Integrated Swagger Ul for interactive API documentation, facilitating easy exploration of available endpoints.' }] },
+                        { title: 'IP Finder', github: 'https://github.com/uaytug/ipfinder', website: 'https://www.uaytug.dev/ipfinder/', tags: ['Vue', 'API', 'JavaScript'], description: [{ text: 'Engineered a web application using Vue.js to provide detailed IP information and display locations on an interactive map.' }, { text: 'Ensured responsiveness across different devices and utilized IPAPI service for accurate IP data retrieval.' }] },
+                        { title: 'Password Strength Checker', github: 'https://github.com/uaytug/passwordStrengthTester', website: 'https://www.uaytug.dev/passwordStrengthTester/', tags: ['Vue', 'Cyber Security', 'JavaScript'], description: [{ text: 'Developed a web application using Vue.js to evaluate password strength and estimate crack time.' }, { text: 'Integrated password strength indicators and common password checks for enhanced security.' }] },
+                        { title: 'Linux Alert Monitoring', github: 'https://github.com/uaytug/LinuxAlertMonitoring', website: null, tags: ['Bash', 'Linux', 'Monitoring'], description: [{ text: 'Designed a Bash script for proactive system monitoring, alerting administrators via Telegram when resource thresholds are exceeded.' }, { text: 'Implemented functions to monitor CPU, memory, and file system usage, ensuring comprehensive monitoring coverage.' }] }
+                    ]
+                },
+                education: [
+                    'Kadir Has University | Istanbul, Turkey',
+                    'Bachelor of Science in Computer Engineering, GPA 3.37',
+                    'October 2021-June 2025'
+                ],
+                contact: {
+                    email_label: 'E-mail',
+                    email_address: "mail{'@'}uaytug.dev",
+                    links: [
+                        { name: "GitHub", link: "https://github.com/uaytug" },
+                        { name: "LinkedIn", link: "https://www.linkedin.com/in/uaytug" }
+                    ]
+                },
+                footer: {
+                    email: 'Email',
+                    resume: 'Resume',
+                    copyright: 'Umut Aytuğ Semerci. All rights reserved.'
+                }
+            },
+            tr: {
+                headerTitle: '[Umut Aytuğ Semerci]',
+                themeSwitchLight: 'AYDINLIK MOD',
+                themeSwitchDark: 'KARANLIK MOD',
+                sectionTitles: {
+                    skills: 'yetenekler --listele',
+                    experience: 'cat /var/log/deneyim.log',
+                    projects: 'ls -R /projeler',
+                    education: 'grep -i "Lisans" egitim.txt',
+                    contact: 'iletisime_gec',
+                },
+                skills: {
+                    core_title: 'Temel',
+                    core_list: ['Web Geliştirme', 'Yazılım Mühendisliği', 'Bilgisayar Ağları', 'Siber Güvenlik', 'Test Otomasyonu'],
+                    languages_title: 'Diller',
+                    languages_list: ['C', 'C++', 'Python', 'Rust', 'Go', 'Java', 'HTML', 'CSS', 'JavaScript', 'Vue', 'NodeJS', 'Express.JS', 'MongoDB', 'SQL', 'Bash'] 
+                },
+                experience: [
+                    { title: 'Ağ Mühendisliği 1(CMPE451) Öğretim Asistanı', company: 'Kadir Has Üniversitesi', dates: 'Şubat 2025-Haziran 2025', duties: [{ text: "CMPE-451 Ağ Mühendisliği I dersinde, Cisco'nun CCNA v7 müfredatının lisans öğrencilerine sunulmasına yardımcı olarak Öğretim Asistanı olarak görev yaptı." }, { text: "Öğrencilere IP adresleme, Ethernet anahtarlama, VLAN yapılandırması ve kablosuz ağ gibi ağ kavramlarının pratik uygulamalarında rehberlik etti." }] },
+                    { title: 'Bilgisayar Ağları (CMPE351) Öğretim Asistanı', company: 'Kadir Has Üniversitesi', dates: 'Eylül 2024-Ocak 2025', duties: [{ text: "Öğrencilerin protokoller, yönlendirme ve ağ mimarisi dahil olmak üzere temel ağ kavramlarını anlamalarına yardımcı oldu." }, { text: "Öğrencilere uygulamalı laboratuvar etkinliklerinde yardımcı oldu." }] },
+                    { title: 'Stajyer', company: 'BRANDEFENSE', dates: 'Ağustos 2024-Ağustos 2024', duties: [{ text: "Gelişmiş siber güvenlik tehditleri ve araçları üzerine araştırma yaptı." }, { text: "Yenilikçi siber güvenlik metodolojilerini araştırdı." }] },
+                    { title: 'Siber Güvenlik Stajyeri', company: 'A101 Yeni Mağazacılık A.Ş.', dates: 'Haziran 2024-Haziran 2024', duties: [{ text: "Güvenlik olayı izleme ve tehdit analizi gerçekleştirdi." }, { text: "Güvenli yapılandırmaların uygulanmasına katıldı." }] },
+                    { title: 'Yazılım Geliştirme Stajyeri', company: 'Sompo Sigorta', dates: 'Haziran 2023-Ağustos 2023', duties: [{ text: "Puppeteer.js gibi araçları kullanarak test otomasyon betikleri ve çerçeveleri geliştirdi ve bakımını yaptı." }, { text: "Kapsamlı test kapsamı sağlayarak çeşitli platformlarda ve ortamlarda otomatik testler yürüttü." }] }
+                ],
+                 projects: {
+                    all_filter: 'Tümü',
+                    website_link: 'Web Sitesi',
+                    list: [
+                        { title: 'Neurodefender IDPS', github: 'https://github.com/uaytug/neurodefender', website: null, tags: ['Siber Güvenlik', 'ML', 'Python', 'Rust'], description: [{ text: 'Makine öğrenmesi kullanarak ağ anomalilerini tespit edecek bir Ağ Saldırı Tespit ve Önleme sistemi geliştirildi.' }, { text: 'BERT tabanlı makine öğrenmesi entegre edilerek, edge veya kaynak kısıtlı cihazlar için hafif bir IDPS geliştirildi.' }] },
+                        { title: 'Discord Müzik Botu', github: 'https://github.com/uaytug/DcBell-beta-public', website: null, tags: ['JavaScript', 'NodeJS'], description: [{ text: 'Kullanıcıların YouTube ve Soundcloud dahil olmak üzere çeşitli kaynaklardan müzik çalmasını sağlayan bir Discord.js müzik botu geliştirildi.' }, { text: 'Gelişmiş kullanıcı deneyimi için gelişmiş sıra yönetimi, ses kontrolü entegre edildi.' }] },
+                        { title: 'C ile Oylama Sistemi', github: 'https://github.com/uaytug/Voting-System', website: null, tags: ['C', 'Algoritmalar'], description: [{ text: 'Kullanıcı kimlik doğrulaması ve aday kaydı işlevlerine sahip, güvenli ve verimli bir oylama sistemi uygulamak için sağlam bir C programı oluşturuldu.' }, { text: 'Performansı ve ölçeklenebilirliği optimize etmek, doğru oy sayımını sağlamak için veri yapıları ve algoritmalar kullanıldı.' }] },
+                        { title: 'JavaScript ile Wordle Klonu', github: 'https://github.com/uaytug/I2DLE', website: 'https://www.uaytug.dev/I2DLE/', tags: ['JavaScript', 'HTML/CSS'], description: [{ text: 'Popüler oyun Wordle\'ın kelime tahmin deneyimi sunan JavaScript tabanlı bir klonu tasarlandı.' }, { text: 'Sezgisel bir kullanıcı arayüzü tasarlandı ve sorunsuz bir oyun deneyimi için farklı cihazlarda uyumluluk sağlandı.' }] },
+                        { title: 'HTTP İstek Test Cihazı', github: 'https://github.com/uaytug/HTTPTester', website: 'https://www.uaytug.dev/HTTPTester/', tags: ['JavaScript', 'NodeJS', 'API'], description: [{ text: 'Çeşitli HTTP yöntemleri ve hata yanıtları için uç noktalara sahip, HTTP isteklerini test etmek için basit bir JS sunucusu geliştirildi.' }, { text: 'Mevcut uç noktaların kolayca keşfedilmesini sağlayan etkileşimli API dokümantasyonu için Swagger UI entegre edildi.' }] },
+                        { title: 'IP Bulucu', github: 'https://github.com/uaytug/ipfinder', website: 'https://www.uaytug.dev/ipfinder/', tags: ['Vue', 'API', 'JavaScript'], description: [{ text: 'Detaylı IP bilgisi sağlamak ve konumları interaktif bir harita üzerinde göstermek için Vue.js kullanılarak bir web uygulaması tasarlandı.' }, { text: 'Farklı cihazlarda duyarlılık sağlandı ve doğru IP verisi alımı için IPAPI servisi kullanıldı.' }] },
+                        { title: 'Şifre Gücü Denetleyicisi', github: 'https://github.com/uaytug/passwordStrengthTester', website: 'https://www.uaytug.dev/passwordStrengthTester/', tags: ['Vue', 'Siber Güvenlik', 'JavaScript'], description: [{ text: 'Şifre gücünü değerlendirmek ve kırılma süresini tahmin etmek için Vue.js kullanılarak bir web uygulaması geliştirildi.' }, { text: 'Gelişmiş güvenlik için şifre gücü göstergeleri ve yaygın şifre kontrolleri entegre edildi.' }] },
+                        { title: 'Linux Uyarı İzleme', github: 'https://github.com/uaytug/LinuxAlertMonitoring', website: null, tags: ['Bash', 'Linux', 'İzleme'], description: [{ text: 'Kaynak eşikleri aşıldığında yöneticileri Telegram aracılığıyla uyaran proaktif bir sistem izleme için bir Bash betiği tasarlandı.' }, { text: 'CPU, bellek ve dosya sistemi kullanımını izlemek için işlevler uygulandı, kapsamlı izleme kapsamı sağlandı.' }] }
+                    ]
+                },
+                education: [
+                    'Kadir Has Üniversitesi | İstanbul, Türkiye',
+                    'Bilgisayar Mühendisliği Lisans, GPA 3.37',
+                    'Ekim 2021-Haziran 2025'
+                ],
+                contact: {
+                    email_label: 'E-posta',
+                    email_address: "mail{'@'}uaytug.dev",
+                    links: [
+                        { name: "GitHub", link: "https://github.com/uaytug" },
+                        { name: "LinkedIn", link: "https://www.linkedin.com/in/uaytug" }
+                    ]
+                },
+                footer: {
+                    email: 'E-posta',
+                    resume: 'Özgeçmiş',
+                    copyright: 'Umut Aytuğ Semerci. Tüm hakları saklıdır.'
+                }
+            }
+        };
+
+        // --- VUE I18N BAŞLATMA ---
+        const userLang = navigator.language.split('-')[0];
+        const startingLocale = ['tr', 'en'].includes(userLang) ? userLang : 'tr';
+
+        const i18n = createI18n({
+            legacy: false, 
+            locale: startingLocale,
+            fallbackLocale: 'en',
+            messages,
+        });
+
+        // --- VUE UYGULAMASI ---
+        const vueApp = createApp({
+            data() {
+                return {
+                    theme: 'dark',
+                    selectedTag: 'All',
+                }
+            },
+            computed: {
+                allTags() {
+                    const tags = new Set();
+                    const projects = this.$tm('projects.list');
+                    if (Array.isArray(projects)) {
+                        projects.forEach(p => p.tags.forEach(tag => tags.add(tag)));
+                    }
+                    return Array.from(tags).sort();
+                },
+                filteredProjects() {
+                    const projects = this.$tm('projects.list');
+                    if (this.selectedTag === 'All') { return projects; }
+                    return projects.filter(p => p.tags.includes(this.selectedTag));
+                }
+            },
+            methods: {
+                setLang(lang) {
+                    this.$i18n.locale = lang;
+                },
+                toggleTheme() {
+                    this.theme = this.theme === 'dark' ? 'light' : 'dark';
+                    document.documentElement.className = this.theme;
+                },
+                selectTag(tag) { this.selectedTag = tag; },
+                initMatrixRain() {
+                    const canvas = document.getElementById('matrix-canvas');
+                    if (!canvas) return;
+                    const ctx = canvas.getContext('2d');
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                    const alphabet = 'アァカサタナハマヤラワガザダバパイィキシチニヒミリヰギジヂビピウゥクスツヌフムユュルグズブヅプエェケセテネヘメレヱゲゼデベペオォコソトノホモヨョロヲゴゾドボポヴッン01';
+                    const fontSize = 16;
+                    const columns = canvas.width / fontSize;
+                    const rainDrops = Array.from({ length: columns }).map(() => 1);
+                    const draw = () => {
+                        ctx.fillStyle = 'rgba(10, 10, 10, 0.05)';
+                        ctx.fillRect(0, 0, canvas.width, canvas.height);
+                        ctx.fillStyle = '#00FF41';
+                        ctx.font = fontSize + 'px monospace';
+                        rainDrops.forEach((y, ind) => {
+                            const text = alphabet.charAt(Math.floor(Math.random() * alphabet.length));
+                            ctx.fillText(text, ind * fontSize, y * fontSize);
+                            if (y * fontSize > canvas.height && Math.random() > 0.975) rainDrops[ind] = 0;
+                            else rainDrops[ind] = y + 1;
+                        });
+                    };
+                    setInterval(draw, 40);
+                    window.addEventListener('resize', () => {
+                        canvas.width = window.innerWidth;
+                        canvas.height = window.innerHeight;
+                    });
+                }
+            },
+            mounted() {
+                document.documentElement.className = this.theme;
+            }
+        });
+        
+        vueApp.use(i18n); 
+        const appInstance = vueApp.mount('#app');
+
+        // --- BOOT SEQUENCE SCRIPT ---
+        (async () => {
+            const logElement = document.getElementById('boot-log');
+            const bootScreen = document.getElementById('boot-screen');
+            const appElement = document.getElementById('app');
+            const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
+
+            // Karakter karakter yazma fonksiyonu
+            const typeWriter = async (element, text, speed = 10) => {
+                for (let i = 0; i < text.length; i++) {
+                    if (text[i] === '<') {
+                        // HTML tag'ini bul ve tek seferde ekle
+                        const tagEnd = text.indexOf('>', i);
+                        if (tagEnd !== -1) {
+                            element.innerHTML += text.substring(i, tagEnd + 1);
+                            i = tagEnd;
+                        }
+                    } else {
+                        element.innerHTML += text[i];
+                    }
+                    await sleep(speed);
+                }
+            };
+
+            const bootLines = [
+                { text: 'Linux portfolio 6.5.0-14-generic #14~22.04.1-Ubuntu SMP x86_64 GNU/Linux', delay: 20, speed: 5 },
+                { text: '', delay: 10 },
+                { text: 'root@kali:~# nmap -sV -O uaytug.dev', isInput: true, delay: 50, speed: 15 },
+                { text: 'Starting Nmap 7.94 ( https://nmap.org )', delay: 20, speed: 5 },
+                { text: 'Nmap scan report for uaytug.dev (185.199.108.153)', delay: 30, speed: 5 },
+                { text: 'Host is up (0.0012s latency).', delay: 10, speed: 5 },
+                { text: 'Not shown: 995 closed tcp ports', delay: 10, speed: 5 },
+                { text: 'PORT     STATE SERVICE    VERSION', delay: 10, speed: 5 },
+                { text: '22/tcp   open  ssh        OpenSSH 8.9p1 Ubuntu', delay: 5, speed: 5 },
+                { text: '80/tcp   open  http       nginx 1.18.0', delay: 5, speed: 5 },
+                { text: '443/tcp  open  ssl/https  nginx 1.18.0', delay: 5, speed: 5 },
+                { text: '3000/tcp open  http       Node.js Express', delay: 5, speed: 5 },
+                { text: '8080/tcp open  http-proxy Squid http proxy 4.15', delay: 5, speed: 5 },
+                { text: 'OS details: Linux 5.4 - 5.16', delay: 20, speed: 5 },
+                { text: '', delay: 20 },
+                { text: 'root@kali:~# msfconsole -q', isInput: true, delay: 50, speed: 15 },
+                { text: '[*] Starting the Metasploit Framework console...', delay: 50, speed: 5 },
+                { text: '', delay: 20 },
+                { text: '     ,           ,', delay: 5, speed: 2 },
+                { text: '    /             \\', delay: 5, speed: 2 },
+                { text: '   ((__---,,,---__))', delay: 5, speed: 2 },
+                { text: '    (_) O O (_)_________', delay: 5, speed: 2 },
+                { text: '       \\ _ /            |\\', delay: 5, speed: 2 },
+                { text: '        o_o \\   M S F   | \\', delay: 5, speed: 2 },
+                { text: '             \\   _____  |  *', delay: 5, speed: 2 },
+                { text: '              |||   WW|||', delay: 5, speed: 2 },
+                { text: '              |||     |||', delay: 5, speed: 2 },
+                { text: '', delay: 20 },
+                { text: '       =[ metasploit v6.3.45-dev ]', delay: 10, speed: 5 },
+                { text: '+ -- --=[ 2376 exploits - 1232 auxiliary - 416 post ]', delay: 10, speed: 5 },
+                { text: '+ -- --=[ 1388 payloads - 46 encoders - 11 nops ]', delay: 10, speed: 5 },
+                { text: '+ -- --=[ 9 evasion ]', delay: 10, speed: 5 },
+                { text: '', delay: 20 },
+                { text: 'msf6 > use auxiliary/scanner/ssh/ssh_login', isInput: true, delay: 50, speed: 15 },
+                { text: 'msf6 auxiliary(scanner/ssh/ssh_login) > set RHOSTS uaytug.dev', isInput: true, delay: 40, speed: 15 },
+                { text: 'RHOSTS => uaytug.dev', delay: 10, speed: 5 },
+                { text: 'msf6 auxiliary(scanner/ssh/ssh_login) > set USER_FILE /usr/share/wordlists/users.txt', isInput: true, delay: 40, speed: 15 },
+                { text: 'USER_FILE => /usr/share/wordlists/users.txt', delay: 10, speed: 5 },
+                { text: 'msf6 auxiliary(scanner/ssh/ssh_login) > run', isInput: true, delay: 40, speed: 15 },
+                { text: '', delay: 20 },
+                { text: '[*] 185.199.108.153:22 - Starting bruteforce', delay: 20, speed: 5 },
+                { text: '[-] 185.199.108.153:22 - Failed: \'admin:admin\'', delay: 30, speed: 5 },
+                { text: '[-] 185.199.108.153:22 - Failed: \'root:toor\'', delay: 30, speed: 5 },
+                { text: '[-] 185.199.108.153:22 - Failed: \'user:password\'', delay: 30, speed: 5 },
+                { text: '[+] 185.199.108.153:22 - Success: \'<span class="status-ok">guest:portfolio2024</span>\'', delay: 40, speed: 5 },
+                { text: '[*] SSH session 1 opened (192.168.1.100:45632 -> 185.199.108.153:22)', delay: 20, speed: 5 },
+                { text: '', delay: 20 },
+                { text: 'msf6 auxiliary(scanner/ssh/ssh_login) > sessions -i 1', isInput: true, delay: 50, speed: 15 },
+                { text: '[*] Starting interaction with 1...', delay: 20, speed: 5 },
+                { text: '', delay: 20 },
+                { text: 'guest@portfolio:~$ sudo -l', isInput: true, delay: 40, speed: 15 },
+                { text: '[sudo] password for guest: ', delay: 20, speed: 5, noNewline: true },
+                { text: '********', delay: 100, speed: 30, password: true },
+                { text: 'User guest may run the following commands on portfolio:', delay: 20, speed: 5 },
+                { text: '    (ALL : ALL) NOPASSWD: /usr/bin/python3', delay: 10, speed: 5 },
+                { text: '', delay: 20 },
+                { text: 'guest@portfolio:~$ sudo python3 -c "import os; os.setuid(0); os.system(\'/bin/bash\')"', isInput: true, delay: 50, speed: 15 },
+                { text: 'root@portfolio:~# <span class="status-ok">id</span>', isInput: true, delay: 40, speed: 15 },
+                { text: 'uid=0(root) gid=0(root) groups=0(root)', delay: 20, speed: 5 },
+                { text: '', delay: 20 },
+                { text: 'root@portfolio:~# cat /root/.flag', isInput: true, delay: 50, speed: 15 },
+                { text: 'FLAG{<span class="status-ok">W3LC0M3_T0_MY_P0RTF0L10</span>}', delay: 40, speed: 10 },
+                { text: '', delay: 20 },
+                { text: 'root@portfolio:~# ls -la /var/www/portfolio/', isInput: true, delay: 50, speed: 15 },
+                { text: 'total 48', delay: 10, speed: 5 },
+                { text: 'drwxr-xr-x 6 www-data www-data 4096 Dec 15 10:23 .', delay: 5, speed: 5 },
+                { text: 'drwxr-xr-x 3 root     root     4096 Dec 10 08:15 ..', delay: 5, speed: 5 },
+                { text: '-rw-r--r-- 1 www-data www-data 8451 Dec 15 10:23 index.html', delay: 5, speed: 5 },
+                { text: 'drwxr-xr-x 2 www-data www-data 4096 Dec 14 15:30 assets', delay: 5, speed: 5 },
+                { text: 'drwxr-xr-x 5 www-data www-data 4096 Dec 14 15:30 projects', delay: 5, speed: 5 },
+                { text: '-rw-r--r-- 1 www-data www-data 2048 Dec 15 09:45 .env', delay: 5, speed: 5 },
+                { text: '', delay: 20 },
+                { text: 'root@portfolio:~# echo "Initializing portfolio interface..."', isInput: true, delay: 50, speed: 15 },
+                { text: 'Initializing portfolio interface...', delay: 20, speed: 5 },
+                { text: '', delay: 20 },
+                { text: 'root@portfolio:~# systemctl start portfolio-ui.service', isInput: true, delay: 50, speed: 15 },
+                { text: '[<span class="status-ok">  OK  </span>] Started Portfolio User Interface Service.', delay: 40, speed: 5 },
+                { text: '[<span class="status-info"> INFO </span>] Loading Vue.js components...', delay: 20, speed: 5 },
+                { text: '[<span class="status-info"> INFO </span>] Compiling assets...', delay: 20, speed: 5 },
+                { text: '[<span class="status-ok">  OK  </span>] Portfolio interface ready on port 443', delay: 40, speed: 5 },
+                { text: '', delay: 100 },
+            ];
+
+            for (const line of bootLines) {
+                const lineSpan = document.createElement('span');
+                lineSpan.className = 'boot-line';
+                logElement.appendChild(lineSpan);
+                
+                // Typewriter efekti
+                if (line.isInput || line.speed) {
+                    await typeWriter(lineSpan, line.text, line.speed || 30);
+                } else {
+                    lineSpan.innerHTML = line.text;
+                }
+                
+                // Şifre girişi için özel işlem
+                if (line.password) {
+                    lineSpan.style.opacity = '0.5';
+                }
+                
+                // Satır sonu ekleme (noNewline değilse)
+                if (!line.noNewline) {
+                    logElement.appendChild(document.createTextNode('\n'));
+                }
+                
+                // İmleç animasyonu
+                if (line.isInput) {
+                    const cursor = document.createElement('span');
+                    cursor.className = 'blinking-cursor';
+                    cursor.innerHTML = '&#9608;';
+                    lineSpan.appendChild(cursor);
+                    await sleep(200);
+                    cursor.remove();
+                }
+                
+                await sleep(line.delay);
+                
+                // Scroll işlemi - boot screen'i aşağı kaydır
+                bootScreen.scrollTop = bootScreen.scrollHeight;
+            }
+            
+            bootScreen.style.animation = 'fadeOut 0.5s forwards';
+            
+            setTimeout(() => {
+                bootScreen.style.display = 'none';
+            }, 500);
+
+            appElement.classList.add('visible');
+            appInstance.initMatrixRain();
+
+        })();
+    </script>
+</body>
+</html>
