@@ -683,8 +683,10 @@
             const sleep = ms => new Promise(resolve => setTimeout(resolve, ms));
 
             // Karakter karakter yazma fonksiyonu
-            const typeWriter = async (element, text, speed = 10) => {
-                for (let i = 0; i < text.length; i++) {
+            const typeWriter = async (element, text, speed = 5) => {
+                // Çok hızlı mod için gruplar halinde yazma
+                const chunkSize = speed <= 2 ? 3 : 1;
+                for (let i = 0; i < text.length; i += chunkSize) {
                     if (text[i] === '<') {
                         // HTML tag'ini bul ve tek seferde ekle
                         const tagEnd = text.indexOf('>', i);
@@ -693,94 +695,54 @@
                             i = tagEnd;
                         }
                     } else {
-                        element.innerHTML += text[i];
+                        element.innerHTML += text.substring(i, Math.min(i + chunkSize, text.length));
                     }
                     await sleep(speed);
                 }
             };
 
             const bootLines = [
-                { text: 'Linux portfolio 6.5.0-14-generic #14~22.04.1-Ubuntu SMP x86_64 GNU/Linux', delay: 20, speed: 5 },
+                { text: 'root@kali:~# nmap -sV uaytug.dev', isInput: true, delay: 20, speed: 8 },
+                { text: 'Starting Nmap 7.94', delay: 10, speed: 2 },
+                { text: 'Nmap scan report for uaytug.dev (185.199.108.153)', delay: 10, speed: 2 },
+                { text: 'PORT     STATE SERVICE    VERSION', delay: 5, speed: 2 },
+                { text: '22/tcp   open  ssh        OpenSSH 8.9p1', delay: 2, speed: 2 },
+                { text: '80/tcp   open  http       nginx 1.18.0', delay: 2, speed: 2 },
+                { text: '443/tcp  open  ssl/https  nginx 1.18.0', delay: 2, speed: 2 },
                 { text: '', delay: 10 },
-                { text: 'root@kali:~# nmap -sV -O uaytug.dev', isInput: true, delay: 50, speed: 15 },
-                { text: 'Starting Nmap 7.94 ( https://nmap.org )', delay: 20, speed: 5 },
-                { text: 'Nmap scan report for uaytug.dev (185.199.108.153)', delay: 30, speed: 5 },
-                { text: 'Host is up (0.0012s latency).', delay: 10, speed: 5 },
-                { text: 'Not shown: 995 closed tcp ports', delay: 10, speed: 5 },
-                { text: 'PORT     STATE SERVICE    VERSION', delay: 10, speed: 5 },
-                { text: '22/tcp   open  ssh        OpenSSH 8.9p1 Ubuntu', delay: 5, speed: 5 },
-                { text: '80/tcp   open  http       nginx 1.18.0', delay: 5, speed: 5 },
-                { text: '443/tcp  open  ssl/https  nginx 1.18.0', delay: 5, speed: 5 },
-                { text: '3000/tcp open  http       Node.js Express', delay: 5, speed: 5 },
-                { text: '8080/tcp open  http-proxy Squid http proxy 4.15', delay: 5, speed: 5 },
-                { text: 'OS details: Linux 5.4 - 5.16', delay: 20, speed: 5 },
-                { text: '', delay: 20 },
-                { text: 'root@kali:~# msfconsole -q', isInput: true, delay: 50, speed: 15 },
-                { text: '[*] Starting the Metasploit Framework console...', delay: 50, speed: 5 },
-                { text: '', delay: 20 },
-                { text: '     ,           ,', delay: 5, speed: 2 },
-                { text: '    /             \\', delay: 5, speed: 2 },
-                { text: '   ((__---,,,---__))', delay: 5, speed: 2 },
-                { text: '    (_) O O (_)_________', delay: 5, speed: 2 },
-                { text: '       \\ _ /            |\\', delay: 5, speed: 2 },
-                { text: '        o_o \\   M S F   | \\', delay: 5, speed: 2 },
-                { text: '             \\   _____  |  *', delay: 5, speed: 2 },
-                { text: '              |||   WW|||', delay: 5, speed: 2 },
-                { text: '              |||     |||', delay: 5, speed: 2 },
-                { text: '', delay: 20 },
-                { text: '       =[ metasploit v6.3.45-dev ]', delay: 10, speed: 5 },
-                { text: '+ -- --=[ 2376 exploits - 1232 auxiliary - 416 post ]', delay: 10, speed: 5 },
-                { text: '+ -- --=[ 1388 payloads - 46 encoders - 11 nops ]', delay: 10, speed: 5 },
-                { text: '+ -- --=[ 9 evasion ]', delay: 10, speed: 5 },
-                { text: '', delay: 20 },
-                { text: 'msf6 > use auxiliary/scanner/ssh/ssh_login', isInput: true, delay: 50, speed: 15 },
-                { text: 'msf6 auxiliary(scanner/ssh/ssh_login) > set RHOSTS uaytug.dev', isInput: true, delay: 40, speed: 15 },
-                { text: 'RHOSTS => uaytug.dev', delay: 10, speed: 5 },
-                { text: 'msf6 auxiliary(scanner/ssh/ssh_login) > set USER_FILE /usr/share/wordlists/users.txt', isInput: true, delay: 40, speed: 15 },
-                { text: 'USER_FILE => /usr/share/wordlists/users.txt', delay: 10, speed: 5 },
-                { text: 'msf6 auxiliary(scanner/ssh/ssh_login) > run', isInput: true, delay: 40, speed: 15 },
-                { text: '', delay: 20 },
-                { text: '[*] 185.199.108.153:22 - Starting bruteforce', delay: 20, speed: 5 },
-                { text: '[-] 185.199.108.153:22 - Failed: \'admin:admin\'', delay: 30, speed: 5 },
-                { text: '[-] 185.199.108.153:22 - Failed: \'root:toor\'', delay: 30, speed: 5 },
-                { text: '[-] 185.199.108.153:22 - Failed: \'user:password\'', delay: 30, speed: 5 },
-                { text: '[+] 185.199.108.153:22 - Success: \'<span class="status-ok">guest:portfolio2024</span>\'', delay: 40, speed: 5 },
-                { text: '[*] SSH session 1 opened (192.168.1.100:45632 -> 185.199.108.153:22)', delay: 20, speed: 5 },
-                { text: '', delay: 20 },
-                { text: 'msf6 auxiliary(scanner/ssh/ssh_login) > sessions -i 1', isInput: true, delay: 50, speed: 15 },
-                { text: '[*] Starting interaction with 1...', delay: 20, speed: 5 },
-                { text: '', delay: 20 },
-                { text: 'guest@portfolio:~$ sudo -l', isInput: true, delay: 40, speed: 15 },
-                { text: '[sudo] password for guest: ', delay: 20, speed: 5, noNewline: true },
-                { text: '********', delay: 100, speed: 30, password: true },
-                { text: 'User guest may run the following commands on portfolio:', delay: 20, speed: 5 },
-                { text: '    (ALL : ALL) NOPASSWD: /usr/bin/python3', delay: 10, speed: 5 },
-                { text: '', delay: 20 },
-                { text: 'guest@portfolio:~$ sudo python3 -c "import os; os.setuid(0); os.system(\'/bin/bash\')"', isInput: true, delay: 50, speed: 15 },
-                { text: 'root@portfolio:~# <span class="status-ok">id</span>', isInput: true, delay: 40, speed: 15 },
-                { text: 'uid=0(root) gid=0(root) groups=0(root)', delay: 20, speed: 5 },
-                { text: '', delay: 20 },
-                { text: 'root@portfolio:~# cat /root/.flag', isInput: true, delay: 50, speed: 15 },
-                { text: 'FLAG{<span class="status-ok">W3LC0M3_T0_MY_P0RTF0L10</span>}', delay: 40, speed: 10 },
-                { text: '', delay: 20 },
-                { text: 'root@portfolio:~# ls -la /var/www/portfolio/', isInput: true, delay: 50, speed: 15 },
-                { text: 'total 48', delay: 10, speed: 5 },
-                { text: 'drwxr-xr-x 6 www-data www-data 4096 Dec 15 10:23 .', delay: 5, speed: 5 },
-                { text: 'drwxr-xr-x 3 root     root     4096 Dec 10 08:15 ..', delay: 5, speed: 5 },
-                { text: '-rw-r--r-- 1 www-data www-data 8451 Dec 15 10:23 index.html', delay: 5, speed: 5 },
-                { text: 'drwxr-xr-x 2 www-data www-data 4096 Dec 14 15:30 assets', delay: 5, speed: 5 },
-                { text: 'drwxr-xr-x 5 www-data www-data 4096 Dec 14 15:30 projects', delay: 5, speed: 5 },
-                { text: '-rw-r--r-- 1 www-data www-data 2048 Dec 15 09:45 .env', delay: 5, speed: 5 },
-                { text: '', delay: 20 },
-                { text: 'root@portfolio:~# echo "Initializing portfolio interface..."', isInput: true, delay: 50, speed: 15 },
-                { text: 'Initializing portfolio interface...', delay: 20, speed: 5 },
-                { text: '', delay: 20 },
-                { text: 'root@portfolio:~# systemctl start portfolio-ui.service', isInput: true, delay: 50, speed: 15 },
-                { text: '[<span class="status-ok">  OK  </span>] Started Portfolio User Interface Service.', delay: 40, speed: 5 },
-                { text: '[<span class="status-info"> INFO </span>] Loading Vue.js components...', delay: 20, speed: 5 },
-                { text: '[<span class="status-info"> INFO </span>] Compiling assets...', delay: 20, speed: 5 },
-                { text: '[<span class="status-ok">  OK  </span>] Portfolio interface ready on port 443', delay: 40, speed: 5 },
-                { text: '', delay: 100 },
+                { text: 'root@kali:~# msfconsole -q', isInput: true, delay: 20, speed: 8 },
+                { text: '     ,           ,', delay: 2, speed: 1 },
+                { text: '    /             \\', delay: 2, speed: 1 },
+                { text: '   ((__---,,,---__))', delay: 2, speed: 1 },
+                { text: '    (_) O O (_)_________', delay: 2, speed: 1 },
+                { text: '       \\ _ /            |\\', delay: 2, speed: 1 },
+                { text: '        o_o \\   M S F   | \\', delay: 2, speed: 1 },
+                { text: '             \\   _____  |  *', delay: 2, speed: 1 },
+                { text: '              |||   WW|||', delay: 2, speed: 1 },
+                { text: '              |||     |||', delay: 2, speed: 1 },
+                { text: '', delay: 10 },
+                { text: 'msf6 > use auxiliary/scanner/ssh/ssh_login', isInput: true, delay: 20, speed: 8 },
+                { text: 'msf6 auxiliary(ssh_login) > set RHOSTS uaytug.dev', isInput: true, delay: 15, speed: 8 },
+                { text: 'msf6 auxiliary(ssh_login) > run', isInput: true, delay: 15, speed: 8 },
+                { text: '[*] Starting bruteforce', delay: 10, speed: 2 },
+                { text: '[-] Failed: \'admin:admin\'', delay: 10, speed: 2 },
+                { text: '[-] Failed: \'root:toor\'', delay: 10, speed: 2 },
+                { text: '[+] Success: \'<span class="status-ok">guest:portfolio2024</span>\'', delay: 15, speed: 2 },
+                { text: '', delay: 10 },
+                { text: 'msf6 > sessions -i 1', isInput: true, delay: 20, speed: 8 },
+                { text: 'guest@portfolio:~$ sudo -l', isInput: true, delay: 15, speed: 8 },
+                { text: '[sudo] password for guest: ********', delay: 30, speed: 15 },
+                { text: '(ALL : ALL) NOPASSWD: /usr/bin/python3', delay: 5, speed: 2 },
+                { text: 'guest@portfolio:~$ sudo python3 -c "import os; os.setuid(0); os.system(\'/bin/bash\')"', isInput: true, delay: 20, speed: 8 },
+                { text: 'root@portfolio:~# id', isInput: true, delay: 15, speed: 8 },
+                { text: 'uid=0(root) gid=0(root) groups=0(root)', delay: 10, speed: 2 },
+                { text: 'root@portfolio:~# cat /root/.flag', isInput: true, delay: 20, speed: 8 },
+                { text: 'FLAG{<span class="status-ok">W3LC0M3_T0_MY_P0RTF0L10</span>}', delay: 15, speed: 5 },
+                { text: '', delay: 10 },
+                { text: 'root@portfolio:~# systemctl start portfolio-ui.service', isInput: true, delay: 20, speed: 8 },
+                { text: '[<span class="status-ok">  OK  </span>] Started Portfolio UI Service', delay: 15, speed: 2 },
+                { text: '[<span class="status-ok">  OK  </span>] Portfolio ready on port 443', delay: 15, speed: 2 },
+                { text: '', delay: 50 },
             ];
 
             for (const line of bootLines) {
@@ -821,11 +783,11 @@
                 bootScreen.scrollTop = bootScreen.scrollHeight;
             }
             
-            bootScreen.style.animation = 'fadeOut 0.5s forwards';
+            bootScreen.style.animation = 'fadeOut 0.3s forwards';
             
             setTimeout(() => {
                 bootScreen.style.display = 'none';
-            }, 500);
+            }, 300);
 
             appElement.classList.add('visible');
             appInstance.initMatrixRain();
