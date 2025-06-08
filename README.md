@@ -1,43 +1,125 @@
-# Umut Aytuğ Semerci
+# Umut Aytuğ Semerci's Personal Website
 
-This is a [personal website](https://www.uaytug.dev/) created by Umut Aytuğ Semerci (Me).
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://github.com/uaytug/uaytug.github.io/blob/main/LICENSE)
 
-There are currently 4 versions available to see
+Welcome to my personal website's repository! This website serves as my professional portfolio and personal showcase, demonstrating my journey, skills, and projects.
 
-- [Version 1](https://www.uaytug.dev/v1/index.html)
-- [Version 2](https://www.uaytug.dev/v2/index.html)
-- [Version 3](https://www.uaytug.dev/v3/index.html)
-- [Version 4](https://www.uaytug.dev/v4/index.html)
+🌐 [Visit Website](https://uaytug.dev)
 
-## Table of Contents
+## 🚀 Features
 
-- [Skills](#skills)
-- [Works](#works)
-- [Hobbies](#hobbies)
-- [Contact](#contact)
-- [Contributing](#contributing)
-- [License](#license)
+- Modern and responsive design
+- Portfolio showcase
+- Skills and expertise presentation
+- Project demonstrations
+- Professional timeline
+- Contact information
+- Multiple versions showcasing evolution
 
-## Skills
+## 📂 Repository Structure
 
-In the [Skills](https://www.uaytug.dev/#skills) section, you can learn more about my skills.
+```
+.
+├── assets/
+│   ├── Resume.pdf        # Current resume
+│   ├── v1Resume.pdf      # Archive of previous resumes
+│   ├── v2Resume.pdf
+│   ├── v3Resume.pdf
+│   ├── pp.jpg           # Profile picture
+│   └── logo.png         # Website logo
+├── v1/                  # Website Version 1
+├── v2/                  # Website Version 2
+├── v3/                  # Website Version 3
+├── v4/                  # Current Version
+├── index.html          # Main landing page
+├── sitemap.xml         # Website sitemap
+└── robots.txt         # Search engine directives
+```
 
-## Works
+## 🔄 Version History
 
-In the [Works](https://www.uaytug.dev/#works) section, you can find information about My personal projects. Some of these projects include:
+### [Version 4](https://uaytug.dev/v4/) (Current)
+- Latest design iteration
+- Enhanced user experience
+- Modern UI components
+- Improved responsiveness
 
-## Hobbies
+### [Version 3](https://uaytug.dev/v3/)
+- Redesigned interface
+- Added new portfolio items
+- Improved navigation
 
-In the [Hobbies](https://www.uaytug.dev/#hobbies) section, you can find my hobbies.
+### [Version 2](https://uaytug.dev/v2/)
+- Updated design elements
+- Enhanced content structure
+- Added more projects
 
-## Contact
+### [Version 1](https://uaytug.dev/v1/)
+- Initial website launch
+- Basic portfolio structure
+- Core information display
 
-In the [Contact](https://www.uaytug.dev/#contact) section, you can find ways to contact Me. You can reach me via Social media, LinkedIn, or GitHub.
+## 💻 Technologies Used
 
-## Contributing
+- HTML5
+- CSS3
+- JavaScript
+- Modern Web Standards
+- Responsive Design Principles
 
-This website was created by Umut Aytuğ Semerci and is not open for contributions at the moment.
+## 🔍 Sections
 
-## License
+### Skills
+Comprehensive overview of technical and professional capabilities:
+- Programming Languages
+- Development Tools
+- Professional Competencies
+- Technical Expertise
 
-This website is licensed under the [MIT License](https://github.com/uaytug/links/blob/main/LICENSE).
+### Works
+Showcase of personal and professional projects:
+- Development Projects
+- Research Work
+- Contributions
+- Academic Projects
+
+### Hobbies
+Personal interests and activities that shape my perspective:
+- Technical Interests
+- Creative Pursuits
+- Continuous Learning
+
+### Contact
+Multiple channels for professional communication:
+- Email
+- LinkedIn
+- GitHub
+- Professional Networks
+
+## 🔧 Development
+
+This website is continuously evolving with regular updates and improvements. While it's not open for public contributions, I welcome feedback and suggestions.
+
+### Local Development
+1. Clone the repository
+   ```bash
+   git clone https://github.com/uaytug/uaytug.github.io.git
+   ```
+2. Navigate to the project directory
+   ```bash
+   cd uaytug.github.io
+   ```
+3. Open `index.html` in your preferred browser
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 📞 Contact
+
+- Website: [uaytug.dev](https://uaytug.dev)
+- GitHub: [@uaytug](https://github.com/uaytug)
+
+---
+
+© 2025 Umut Aytuğ Semerci. All rights reserved.

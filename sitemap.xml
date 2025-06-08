@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:pdf="http://www.google.com/schemas/sitemap-pdf/1.1">
+   <!-- Main Pages -->
+   <url>
+      <loc>https://uaytug.dev/</loc>
+      <lastmod>2024-03-24</lastmod>
+      <changefreq>weekly</changefreq>
+      <priority>1.0</priority>
+   </url>
+
+   <!-- Version Pages -->
+   <url>
+      <loc>https://uaytug.dev/v4/</loc>
+      <lastmod>2024-03-24</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.9</priority>
+   </url>
+   <url>
+      <loc>https://uaytug.dev/v3/</loc>
+      <lastmod>2024-03-24</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <url>
+      <loc>https://uaytug.dev/v2/</loc>
+      <lastmod>2024-03-24</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.7</priority>
+   </url>
+   <url>
+      <loc>https://uaytug.dev/v1/</loc>
+      <lastmod>2024-03-24</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.6</priority>
+   </url>
+
+   <!-- Resume PDFs -->
+   <url>
+      <loc>https://uaytug.dev/assets/Resume.pdf</loc>
+      <lastmod>2024-03-24</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.8</priority>
+   </url>
+   <url>
+      <loc>https://uaytug.dev/assets/v3Resume.pdf</loc>
+      <lastmod>2024-03-24</lastmod>
+      <changefreq>yearly</changefreq>
+      <priority>0.6</priority>
+   </url>
+   <url>
+      <loc>https://uaytug.dev/assets/v2Resume.pdf</loc>
+      <lastmod>2024-03-24</lastmod>
+      <changefreq>yearly</changefreq>
+      <priority>0.5</priority>
+   </url>
+   <url>
+      <loc>https://uaytug.dev/assets/v1Resume.pdf</loc>
+      <lastmod>2024-03-24</lastmod>
+      <changefreq>yearly</changefreq>
+      <priority>0.4</priority>
+   </url>
+
+   <!-- Images -->
+   <url>
+      <loc>https://uaytug.dev/assets/pp.jpg</loc>
+      <lastmod>2024-03-24</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.6</priority>
+      <image:image>
+         <image:loc>https://uaytug.dev/assets/pp.jpg</image:loc>
+         <image:title>Profile Picture</image:title>
+      </image:image>
+   </url>
+   <url>
+      <loc>https://uaytug.dev/assets/logo.png</loc>
+      <lastmod>2024-03-24</lastmod>
+      <changefreq>monthly</changefreq>
+      <priority>0.6</priority>
+      <image:image>
+         <image:loc>https://uaytug.dev/assets/logo.png</image:loc>
+         <image:title>Logo</image:title>
+      </image:image>
+   </url>
+
+   <!-- Documentation -->
+   <url>
+      <loc>https://uaytug.dev/LICENSE</loc>
+      <lastmod>2024-03-24</lastmod>
+      <changefreq>yearly</changefreq>
+      <priority>0.3</priority>
+   </url>
+</urlset>
